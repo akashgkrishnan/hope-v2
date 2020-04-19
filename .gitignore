@@ -1,0 +1,6 @@
+bootstrap/
+sass/
+js/
+*.pyc
+*.jpg
+*.png

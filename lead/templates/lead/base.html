@@ -15,45 +15,45 @@
     <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
     <!-- bootstrap sass -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-<!-- font awesome -->
-  <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
-  
-  {% if title%}
-  <title>{{title}}</title>
-  {% else %}
-  <title>stamp</title>
-  {% endif %}
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
+
+    {% if title%}
+    <title>{{title}}</title>
+    {% else %}
+    <title>stamp</title>
+    {% endif %}
 </head>
 
 <body>
-  <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary" id=#dashboardnav>
-    <a href="" class="navbar-brand">
-        <h3 class="mb-0">
-            Stamp UI
-        </h3>
-    </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#sideNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="sideNavbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#about" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a href="#gallery" class="nav-link">Explore</a>
-            </li>
-            <li class="nav-item">
-                <a href="#newsletter" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" data-toggle="modal" data-target="#book">Book</a>
-            </li>
-        </ul>
-    </div>
+    <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary flex-md-nowrap p-0 shadow" id=#dashboardnav>
+        <a href="" class="navbar-brand col-sm-3 col-md-2 mr-0">
+            <h3 class="mb-0">
+                Stamp UI
+            </h3>
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#sideNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="sideNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newsletter" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#book">Book</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
 
@@ -62,6 +62,9 @@
             <div class="col-md-2 bg-light d-none d-md-block sidebar">
                 <div class="left-sidebar">
                     <ul class="nav flex-column sidebar-nav">
+                        <li class="nav-item sidenavdrop">
+                            <a href="{%url 'lead-home' %}" class="nav-link"> <i class="fas fa-home px-2"></i>Home</a>
+                        </li>
                         <li class="nav-item dropdown sidenavdrop">
                             <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -140,8 +143,8 @@
                                 <i class="fas fa-users px-2"></i>Users
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="{% url 'add-management' %}">management user</a>
+                                <a class="dropdown-item" href="{% url 'add-leaduser' %}">erp admins</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
@@ -172,22 +175,25 @@
                     </ul>
                 </div>
             </div>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                {% block content %}
+
+                {% endblock %}
+            </main>
         </div>
     </div>
 
-    {% block content %}
-    {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
- 
-    </body>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
 
 </html>

@@ -6873,6 +6873,12 @@ body {
   font-family: "Nunito", sans-serif;
   font-size: 1.1rem; }
 
+main {
+  padding-top: 40px; }
+
+form {
+  padding-top: 10px; }
+
 @media (max-width: 768px) {
   .navbar {
     background: #1f1f1f; }
@@ -6885,6 +6891,13 @@ body {
       font-size: 4rem; }
 
   .form-control-primary {
-    display: none; } }
+    display: none; }
+
+  #hint_id_password1 {
+    display: none; }
+
+  .form-heading {
+    font-size: 1.6rem;
+    margin-top: 5px; } }
 
 /*# sourceMappingURL=main.css.map */

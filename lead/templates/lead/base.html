@@ -12,7 +12,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
     <!-- bootstrap sass -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- font awesome -->
@@ -26,7 +25,7 @@
 </head>
 
 <body>
-    <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary flex-md-nowrap p-0 shadow" id=#dashboardnav>
+    <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary flex-md-nowrap" id=#dashboardnav>
         <a href="" class="navbar-brand col-sm-3 col-md-2 mr-0">
             <h3 class="mb-0">
                 Stamp UI
@@ -95,7 +94,7 @@
                                 <i class="fas fa-book-reader px-2"></i>Subjects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="{% url 'add-subject' %}">add subjects</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
@@ -119,7 +118,7 @@
                                 <i class="fas fa-bus px-2"></i>Transport
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="{% url 'add-bus' %}">Add a new bus</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
@@ -160,6 +159,9 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
+                        <li class="nav-item sidenavdrop">
+                            <a href="#" class="nav-link"><i class="fas fa-images px-2"></i>Event galley</a>
+                        </li>
 
                         <li class="nav-item dropdown sidenavdrop">
                             <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
@@ -167,7 +169,7 @@
                                 <i class="fas fa-cogs px-2"></i>Extra
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="{% url 'add-event' %}">events and leaves</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>

@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # models
 from django.contrib.auth.models import User
-from appuser.forms import UserRegisterForm
 from appuser.models import user_role_map, role_details
 from student.models import student_details
 from mgmt.models import management_user
@@ -15,8 +14,14 @@ from lead.models import (lead_user,
                          )
 from teacher.models import teacher_details
 # forms
+from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
-from lead.forms import leadForm, busForm, createEventForm
+from lead.forms import (leadForm,
+                        busForm,
+                        createEventForm,
+                        studentForm,
+                        studentAddressForm,
+                        studentBusForm)
 
 
 # Create your views here.
@@ -83,6 +88,20 @@ def create_leaduser(request):
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'lead user'})
 
 
+def add_student(request):
+    form = studentForm()
+    adress_form = studentAddressForm()
+    bus_form = studentBusForm()
+    user_form = UserRegisterForm()
+    context = {
+        'form': form,
+        'adress_form': adress_form,
+        'bus_form': bus_form,
+        'user_form': user_form
+    }
+    return render(request, 'lead/add-student.html', context)
+
+
 def create_bus(request):
     if request.method == 'POST':
         form = busForm(request.POST)
@@ -111,6 +130,11 @@ def events(request):
 
 def subject_create(request):
     gd = grade_master.objects.all()
+    subjects = subject_and_grade.objects.all()
+    context = {
+        'grade': gd,
+        'subjects': subjects
+    }
     if request.method == "POST":
         sub = request.POST.get('subject_name')
         new_subject = subject_master(subject_name=sub)
@@ -125,4 +149,9 @@ def subject_create(request):
                     subject=new_subject, grade_section=gsm)
                 subject_section.save()
         return redirect('lead-home')
-    return render(request, 'lead/subject-form.html', {'grade': gd})
+    return render(request, 'lead/subject-form.html', context)
+
+
+def add_department(request):  # for mapping deparment heads to department
+    if request.method == 'POST':
+        pass

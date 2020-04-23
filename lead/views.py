@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # models
 from django.contrib.auth.models import User
-from appuser.forms import UserRegisterForm
 from appuser.models import user_role_map, role_details
 from student.models import student_details
 from mgmt.models import management_user
@@ -15,8 +14,14 @@ from lead.models import (lead_user,
                          )
 from teacher.models import teacher_details
 # forms
+from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
-from lead.forms import leadForm, busForm, createEventForm
+from lead.forms import (leadForm,
+                        busForm,
+                        createEventForm,
+                        studentForm,
+                        studentAddressForm,
+                        studentBusForm)
 
 
 # Create your views here.
@@ -83,6 +88,49 @@ def create_leaduser(request):
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'lead user'})
 
 
+def add_student(request):
+    if request.method == 'POST':
+        form = studentForm(request.POST)
+        adress_form = studentAddressForm(request.POST)
+        bus_form = studentBusForm(request.POST)
+        user_form = UserRegisterForm(request.POST)
+        if form.is_valid() and adress_form.is_valid() and bus_form.is_valid() and user_form.is_valid():
+            print('hi')
+            new_student = form.save(commit=False)
+            first_name = form.cleaned_data.get('first_name')
+            username = user_form.cleaned_data.get('username')
+            user_form.save()
+            user = User.objects.filter(username = username)[0]
+            new_student.user_name = user
+            new_student.save()
+            user_role = role_details.objects.filter(role_name = 'STUDENT')[0]
+            new_user_role = user_role_map(stamp_user = user, role = user_role)
+            new_user_role.save()
+            new_bus = bus_form.save(commit=False)
+            new_bus.student = new_student
+            new_bus.save()
+            new_adress = adress_form.save(commit=False)
+            new_adress.student = new_student
+            new_adress.save()
+            messages.success(request, f' {first_name} saved in system!')
+            return redirect('add-student')
+    else:
+        form = studentForm()
+        adress_form = studentAddressForm()
+        bus_form = studentBusForm()
+        user_form = UserRegisterForm()
+
+    context = {
+        'form': form,
+        'adress_form': adress_form,
+        'bus_form': bus_form,
+        'user_form': user_form
+    }
+
+
+    return render(request, 'lead/add-student.html', context)
+
+
 def create_bus(request):
     if request.method == 'POST':
         form = busForm(request.POST)
@@ -111,6 +159,11 @@ def events(request):
 
 def subject_create(request):
     gd = grade_master.objects.all()
+    subjects = subject_and_grade.objects.all()
+    context = {
+        'grade': gd,
+        'subjects': subjects
+    }
     if request.method == "POST":
         sub = request.POST.get('subject_name')
         new_subject = subject_master(subject_name=sub)
@@ -125,4 +178,9 @@ def subject_create(request):
                     subject=new_subject, grade_section=gsm)
                 subject_section.save()
         return redirect('lead-home')
-    return render(request, 'lead/subject-form.html', {'grade': gd})
+    return render(request, 'lead/subject-form.html', context)
+
+
+def add_department(request):  # for mapping deparment heads to department
+    if request.method == 'POST':
+        pass

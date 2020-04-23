@@ -8,6 +8,7 @@ urlpatterns = [
     path('add-leaduser', views.create_leaduser, name='add-leaduser'),
     path('add-bus', views.create_bus, name='add-bus'),
     path('add-event', views.events , name='add-event'),
-    path('add-subject', views.subject_create, name='add-subject')
+    path('add-subject', views.subject_create, name='add-subject'),
+    path('add-student', views.add_student, name='add-student')
 
 ]

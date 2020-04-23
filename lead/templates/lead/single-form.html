@@ -16,8 +16,8 @@
         {% endif %}
     </div>
 </div>
-<div class="container rounded mb-5" id='buscreation'>
-    <form method="POST" class="border m-4">
+<div class="container mb-5" id='creation_forms'>
+    <form method="POST" class="creation_forms shadow">
         {% csrf_token %}
         <div class="container row">
             <!-- <div class="col-md-6"> -->
@@ -25,12 +25,12 @@
                 {{ form|crispy }}
             </fieldset>
             <!-- </div> -->
-        </div>
-        <div class="form-group col-md-6 offset-md-3">
-            <button class="btn btn text-white btn-block btn-primary" type="submit">
-                Save
-                <i class="fas fa-arrow-right"></i>
-            </button>
+            <div class="form-group col-md-6 offset-md-3">
+                <button class="btn text-white btn-block btn-primary" type="submit">
+                    Save
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </form>
 </div>

@@ -24,7 +24,7 @@ class student_details(models.Model):  # for storing student info
     gender = models.CharField(max_length=2, choices=GENDER)
     fathers_name = models.CharField(max_length=40)
     mothers_name = models.CharField(max_length=40)
-    dob = models.DateField(verbose_name="DOB")
+    dob = models.DateField()
     mobile = models.CharField(max_length=10)
     email = models.EmailField()
     grade_section = models.ForeignKey(grade_section_master, on_delete=models.DO_NOTHING)

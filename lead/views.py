@@ -89,16 +89,45 @@ def create_leaduser(request):
 
 
 def add_student(request):
-    form = studentForm()
-    adress_form = studentAddressForm()
-    bus_form = studentBusForm()
-    user_form = UserRegisterForm()
+    if request.method == 'POST':
+        form = studentForm(request.POST)
+        adress_form = studentAddressForm(request.POST)
+        bus_form = studentBusForm(request.POST)
+        user_form = UserRegisterForm(request.POST)
+        if form.is_valid() and adress_form.is_valid() and bus_form.is_valid() and user_form.is_valid():
+            print('hi')
+            new_student = form.save(commit=False)
+            first_name = form.cleaned_data.get('first_name')
+            username = user_form.cleaned_data.get('username')
+            user_form.save()
+            user = User.objects.filter(username = username)[0]
+            new_student.user_name = user
+            new_student.save()
+            user_role = role_details.objects.filter(role_name = 'STUDENT')[0]
+            new_user_role = user_role_map(stamp_user = user, role = user_role)
+            new_user_role.save()
+            new_bus = bus_form.save(commit=False)
+            new_bus.student = new_student
+            new_bus.save()
+            new_adress = adress_form.save(commit=False)
+            new_adress.student = new_student
+            new_adress.save()
+            messages.success(request, f' {first_name} saved in system!')
+            return redirect('add-student')
+    else:
+        form = studentForm()
+        adress_form = studentAddressForm()
+        bus_form = studentBusForm()
+        user_form = UserRegisterForm()
+
     context = {
         'form': form,
         'adress_form': adress_form,
         'bus_form': bus_form,
         'user_form': user_form
     }
+
+
     return render(request, 'lead/add-student.html', context)
 
 

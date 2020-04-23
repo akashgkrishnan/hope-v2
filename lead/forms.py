@@ -39,17 +39,40 @@ class createEventForm(ModelForm):
 class studentForm(ModelForm):
     class Meta:
         model = student_details
-        fields = '__all__'
+        fields = [
+            'first_name',
+            'last_name',
+            'admission_number',
+            'gender',
+            'fathers_name',
+            'mothers_name',
+            'dob',
+            'mobile',
+            'email',
+            'grade_section'
+        ]
         widgets = {
             'dob': DateInput()
         }
 
+
 class studentAddressForm(ModelForm):
     class Meta:
         model = student_address
-        fields = '__all__'
+        fields = [
+            'adress',
+            'adress2',
+            'city',
+            'state',
+            'pincode'
+        ]
+
 
 class studentBusForm(ModelForm):
     class Meta:
         model = student_bus_info
-        fields = '__all__'
+        fields = [
+            'bus',
+            'start_point',
+            'end_point'
+        ]

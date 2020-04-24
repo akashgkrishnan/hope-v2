@@ -12,7 +12,7 @@ from lead.models import (lead_user,
                          subject_grade_section,
                          grade_section_master
                          )
-from teacher.models import teacher_details
+from teacher.models import teacher_details, department_head, department
 # forms
 from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
@@ -22,7 +22,7 @@ from lead.forms import (leadForm,
                         )
 
 from student.forms import studentForm, studentAddressForm, studentBusForm
-from teacher.forms import TeacherForm
+from teacher.forms import TeacherForm, departmentHeadForm, departmentForm
 
 # Create your views here.
 def lead_index(request):
@@ -208,6 +208,26 @@ def subject_create(request):
     return render(request, 'lead/subject-form.html', context)
 
 
-def add_department(request):  # for mapping deparment heads to department
+def departments(request):  # for mapping deparment heads to department
     if request.method == 'POST':
-        pass
+        form =departmentHeadForm(request.POST)
+        form2 =departmentForm(request.POST)
+        if form.is_valid() and form2.is_valid():
+            form2.save()
+            name = form2.cleaned_data.get('name')
+            d = department.objects.filter(name= name)[0]
+            new_department_head = form.save(commit=False)
+            new_department_head.department = d
+            new_department_head.save()
+            return redirect('departments')
+    else:
+        dept = department_head.objects.all()
+        form = departmentHeadForm()
+        form2 = departmentForm()
+
+        context = {
+            'form': form,
+            'departments': dept,
+            'form2': form2
+        }
+    return render(request, 'lead/departments.html', context)

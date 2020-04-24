@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 # models
-from .models import teacher_details
+from .models import teacher_details, department_head, department
 
 
 class DateInput(forms.DateInput):
@@ -29,3 +29,14 @@ class TeacherForm(ModelForm):
         widgets = {
             'date_of_joining': DateInput()
         }
+
+
+class departmentForm(ModelForm):
+    class Meta:
+        model = department
+        fields = '__all__'
+
+class departmentHeadForm(ModelForm):
+    class Meta:
+        model = department_head
+        fields = ['department_leader']

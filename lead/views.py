@@ -12,17 +12,17 @@ from lead.models import (lead_user,
                          subject_grade_section,
                          grade_section_master
                          )
-from teacher.models import teacher_details
+from teacher.models import teacher_details, department_head, department
 # forms
 from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
 from lead.forms import (leadForm,
                         busForm,
-                        createEventForm,
-                        studentForm,
-                        studentAddressForm,
-                        studentBusForm)
+                        createEventForm
+                        )
 
+from student.forms import studentForm, studentAddressForm, studentBusForm
+from teacher.forms import TeacherForm, departmentHeadForm, departmentForm
 
 # Create your views here.
 def lead_index(request):
@@ -95,7 +95,6 @@ def add_student(request):
         bus_form = studentBusForm(request.POST)
         user_form = UserRegisterForm(request.POST)
         if form.is_valid() and adress_form.is_valid() and bus_form.is_valid() and user_form.is_valid():
-            print('hi')
             new_student = form.save(commit=False)
             first_name = form.cleaned_data.get('first_name')
             username = user_form.cleaned_data.get('username')
@@ -129,6 +128,34 @@ def add_student(request):
 
 
     return render(request, 'lead/add-student.html', context)
+
+def add_teacher(request):
+    if request.method == 'POST':
+        form = TeacherForm(request.POST)
+        user_form = UserRegisterForm(request.POST)
+        if form.is_valid() and user_form.is_valid():
+            new_teacher = form.save(commit=False)
+            first_name = form.cleaned_data.get('first_name')
+            username = user_form.cleaned_data.get('username')
+            user_form.save()
+            user = User.objects.filter(username = username)[0]
+            new_teacher.user_name = user
+            new_teacher.save()
+            user_role = role_details.objects.filter(role_name = 'TEACHER')[0]
+            new_user_role = user_role_map(stamp_user = user, role = user_role)
+            new_user_role.save()
+            messages.success(request, f' {first_name} saved in system!')
+            redirect('add-teacher')
+
+    else:
+        form = TeacherForm()
+        user_form = UserRegisterForm()
+    context = {
+        'form': form,
+        'user_form': user_form,
+        'title': 'Add teachers'
+    }
+    return render(request, 'lead/add-teachers.html', context)
 
 
 def create_bus(request):
@@ -181,6 +208,26 @@ def subject_create(request):
     return render(request, 'lead/subject-form.html', context)
 
 
-def add_department(request):  # for mapping deparment heads to department
+def departments(request):  # for mapping deparment heads to department
     if request.method == 'POST':
-        pass
+        form =departmentHeadForm(request.POST)
+        form2 =departmentForm(request.POST)
+        if form.is_valid() and form2.is_valid():
+            form2.save()
+            name = form2.cleaned_data.get('name')
+            d = department.objects.filter(name= name)[0]
+            new_department_head = form.save(commit=False)
+            new_department_head.department = d
+            new_department_head.save()
+            return redirect('departments')
+    else:
+        dept = department_head.objects.all()
+        form = departmentHeadForm()
+        form2 = departmentForm()
+
+        context = {
+            'form': form,
+            'departments': dept,
+            'form2': form2
+        }
+    return render(request, 'lead/departments.html', context)

@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lead',
-    'librarian',
-    'mgmt',
-    'student',
-    'teacher',
-    'appuser',
+    'lead.apps.LeadConfig',
+    'librarian.apps.LibrarianConfig',
+    'mgmt.apps.MgmtConfig',
+    'student.apps.StudentConfig',
+    'teacher.apps.TeacherConfig',
+    'appuser.apps.AppuserConfig',
     'crispy_forms'
 ]
 

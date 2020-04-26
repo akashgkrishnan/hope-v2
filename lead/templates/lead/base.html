@@ -39,7 +39,8 @@
                 {% if user.is_authenticated%}
                 <li class="nav-item ml-auto">
                   <a href="{% url 'logout' %}" class="nav-link">
-                    Logout
+                      logout
+                    <img src="{{ user.profile.image.url }} " class="rounded d-none d-md-inline profileimage" alt=""> 
                   </a>
                 </li>
                 {% else %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import user_role_map
 
 # Create your views here.
@@ -6,7 +7,7 @@ from .models import user_role_map
 def app_home(request):
     return render(request, 'appuser/home.html')
 
-
+@login_required
 def redirector(request):
     actor = user_role_map.objects.filter(stamp_user = request.user)[0]    
     if actor.role.role_name == 'STUDENT':

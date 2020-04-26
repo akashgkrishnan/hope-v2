@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # models
 from django.contrib.auth.models import User
 from appuser.models import user_role_map, role_details
@@ -25,6 +26,8 @@ from student.forms import studentForm, studentAddressForm, studentBusForm
 from teacher.forms import TeacherForm, departmentHeadForm, departmentForm
 
 # Create your views here.
+
+@login_required
 def lead_index(request):
     student_count = student_details.objects.count()
     management_count = management_user.objects.count()
@@ -38,7 +41,7 @@ def lead_index(request):
     }
     return render(request, 'lead/lead-index.html', context)
 
-
+@login_required
 def create_management(request):
     if request.method == 'POST':
         form = managementForm(request.POST)
@@ -63,7 +66,7 @@ def create_management(request):
         form2 = UserRegisterForm()
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'Add management user'})
 
-
+@login_required
 def create_leaduser(request):
     if request.method == 'POST':
         form = leadForm(request.POST)
@@ -87,7 +90,7 @@ def create_leaduser(request):
         form2 = UserRegisterForm()
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'lead user'})
 
-
+@login_required
 def add_student(request):
     if request.method == 'POST':
         form = studentForm(request.POST)
@@ -129,6 +132,7 @@ def add_student(request):
 
     return render(request, 'lead/add-student.html', context)
 
+@login_required
 def add_teacher(request):
     if request.method == 'POST':
         form = TeacherForm(request.POST)
@@ -157,7 +161,7 @@ def add_teacher(request):
     }
     return render(request, 'lead/add-teachers.html', context)
 
-
+@login_required
 def create_bus(request):
     if request.method == 'POST':
         form = busForm(request.POST)
@@ -170,7 +174,7 @@ def create_bus(request):
         form = busForm()
     return render(request, 'lead/single-form.html', {'form': form, 'title': 'Add-Bus-Info'})
 
-
+@login_required
 def events(request):
     if request.method == 'POST':
         form = createEventForm(request.POST)
@@ -183,7 +187,7 @@ def events(request):
         form = createEventForm()
     return render(request, 'lead/single-form.html', {'form': form, 'title': 'annual leaves'})
 
-
+@login_required
 def subject_create(request):
     gd = grade_master.objects.all()
     subjects = subject_and_grade.objects.all()
@@ -208,6 +212,8 @@ def subject_create(request):
     return render(request, 'lead/subject-form.html', context)
 
 
+
+@login_required
 def departments(request):  # for mapping deparment heads to department
     if request.method == 'POST':
         form =departmentHeadForm(request.POST)

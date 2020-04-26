@@ -37,21 +37,21 @@
         </button>
         <div class="collapse navbar-collapse" id="sideNavbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#gallery" class="nav-link">Explore</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#newsletter" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="modal" data-target="#book">Book</a>
-                </li>
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated%}
+                    <li class="nav-item ml-auto">
+                      <a href="{% url 'logout' %}" class="nav-link">
+                        Logout
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a href="{% url 'login' %}" class="nav-link">
+                        login
+                      </a>
+                    </li>
+                    {% endif %}
+                </ul>
             </ul>
         </div>
     </nav>
@@ -61,7 +61,7 @@
 
     <section class="headings">
         <h2 class="display-4 lead mb-5">
-            Hello Akash!
+            Hello {{request.user.first_name}}
         </h2>
     </section>
 
@@ -112,7 +112,7 @@
             </form>
             <div class="table-responsive col-md-6 order-1 order-md-2">
                 <table class="table table-hover">
-                    <thead class="thead-dark text-center">
+                    <thead class="bg-gradient-secondary text-center">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
@@ -123,12 +123,12 @@
                     </thead>
                     <tbody>
                         {% for book in books%}
-                        <tr class="table-primary text-center">
+                        <tr class="table-secondary text-center">
                             <th scope="row">{{book.id}}</th>
-                            <td>{{book.book_name}}</td>
-                            <td>{{book.book_author}}</td>
-                            <td>{{book.genre}}</td>
-                            <td>{{ book.number_of_books }}</td>
+                            <td >{{book.book_name}}</td>
+                            <td >{{book.book_author}}</td>
+                            <td >{{book.genre}}</td>
+                            <td >{{ book.number_of_books }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

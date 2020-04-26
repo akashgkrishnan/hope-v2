@@ -34,11 +34,19 @@
             Contact
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{% url 'login' %}" class="nav-link">
-            Login
+        {% if user.is_authenticated%}
+        <li class="nav-item ml-auto">
+          <a href="{% url 'logout' %}" class="nav-link">
+            Logout
           </a>
         </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'login' %}" class="nav-link">
+            login
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
@@ -137,7 +145,7 @@
         </div>
       </div>
       <div class="col-md-6 order-2 order-md-1">
-        <img src="{% static 'images/3.jpg'%}" alt="" class="img-fluid">
+        <img src="{% static 'images/5.jpg'%}" alt="" class="img-fluid">
       </div>
     </div>
   </section>
@@ -165,6 +173,10 @@
       </ui>
     </div>
   </section>
+  <p class="lead d-none">
+    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+</p>
+
 
 
   <!-- Optional JavaScript -->

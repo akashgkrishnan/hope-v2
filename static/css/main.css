@@ -6976,25 +6976,36 @@ label {
   top: 0;
   height: calc(100vh - 70px); }
 
+.sad {
+  width: 40px;
+  height: 40px; }
+
+.login {
+  margin-left: 130px;
+  width: 70px;
+  height: 70px; }
+
 @media (max-width: 768px) {
   .navbar {
     background: #1f1f1f; }
     .navbar .nav-link:hover {
       border-bottom: none; }
 
-  #showcase {
-    min-height: 500px; }
-    #showcase h1 {
-      font-size: 4rem; }
-
-  .form-control-primary {
-    display: none; }
-
   #hint_id_password1 {
     display: none; }
 
   .form-heading {
     font-size: 1.6rem;
-    margin-top: 5px; } }
+    margin-top: 5px; }
+
+  .login {
+    display: none; }
+
+  .authviews {
+    margin-top: 100px;
+    margin-bottom: 20px; }
+
+  .loginImage {
+    margin-top: 20px; } }
 
 /*# sourceMappingURL=main.css.map */

@@ -36,24 +36,32 @@
                         Contact
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'login' %}" class="nav-link">
-                        Login
-                    </a> 
+                {% if user.is_authenticated%}
+                <li class="nav-item ml-auto">
+                  <a href="{% url 'logout' %}" class="nav-link">
+                    Logout
+                  </a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="nav-link">
+                    login
+                  </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
 
 
-    <section class="container-fluid p-0">
+    <section class="container-fluid p-0 authviews">
         <div class="row align-items-center">
             <div class="col-lg-6">
 
                 <form method="POST" class="col-md-6 offset-md-3 loginform">
-                    {% csrf_token %}
+                    {% csrf_token %}                   
+                    <img src="{% static 'images/login.png'%}" alt="" class="img-fluid d-none d-md-inline login justify-content-center" >
                     <fieldset class="form-group">
-                        <legend class="mb-md-4 offset-md-4">Log In</legend>
                         {{ form|crispy }}
                     </fieldset>
                     <div class="form-group mt-4">
@@ -63,7 +71,7 @@
 
             </div>
             <div class="col-lg-6">
-                <img src="{% static 'images/4.jpg'%}" alt="" class="img-fluid mb-2 loginImage">
+                <img src="{% static 'images/6.jpg'%}" alt="" class="img-fluid mb-2 loginImage">
             </div>
         </div>
     </section>

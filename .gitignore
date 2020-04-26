@@ -5,5 +5,7 @@ js/
 *.jpg
 *.png
 *.map
-media
+media/
 *.png
+migrations/
+images/

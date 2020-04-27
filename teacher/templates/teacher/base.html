@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@
 
 <body>
     <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary flex-md-nowrap" id=#dashboardnav>
-        <a href="" class="navbar-brand col-sm-3 col-md-2 mr-0">
+        <a href="{% url 'teacher-home' %}" class="navbar-brand col-sm-3 col-md-2 mr-0">
             <h3 class="mb-0">
                 Stamp UI
             </h3>
@@ -70,8 +71,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{% url 'add-student' %}">Add student</a>
-                                <a class="dropdown-item" href="#">View students</a>
-                                <a class="dropdown-item" href="#">Update info</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
 
@@ -82,9 +83,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{%url 'add-teacher' %}">Add teachers</a>
-                                <a class="dropdown-item" href="#">View Teacher</a>
-                                <a class="dropdown-item" href="#">Class Teachers</a>
-
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
 
@@ -94,9 +94,9 @@
                                 <i class="fas fa-book-reader px-2"></i>Subjects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-subject' %}">add subjects(Class)</a>
-                                <a class="dropdown-item" href="#">add subject (section)</a>
-                                <a class="dropdown-item" href="#">subject teachers</a>
+                                <a class="dropdown-item" href="{% url 'add-subject' %}">add subjects</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
 
@@ -144,7 +144,7 @@
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{% url 'add-management' %}">management user</a>
                                 <a class="dropdown-item" href="{% url 'add-leaduser' %}">erp admins</a>
-                                <a class="dropdown-item" href="#">Update librarian</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
 
@@ -170,7 +170,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{% url 'add-event' %}">events & leaves</a>
-                                <a class="dropdown-item" href="{% url 'departments' %}">departments and clubs</a>
+                                <a class="dropdown-item" href="#">departments and clubs</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>

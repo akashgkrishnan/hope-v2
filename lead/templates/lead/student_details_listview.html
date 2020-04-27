@@ -1,0 +1,58 @@
+{% extends "lead/base.html" %}
+{% block content %}
+
+<section>
+    <div class="jumbotron-fluid">
+        <div class="container">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+</section>
+
+<section class="studentlist">
+    <div class="container row">
+    <div class="container col-sm-12">
+
+        <table class="table table-responsive table-hover">
+            <caption>Student info</caption>
+            <thead class="text-center  bg-gradient-primary text-white">
+                <tr>
+                    <th scope="col">Admission No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Fathers Name</th>
+                    <th scope="col">Class and Section</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            {% for student in students%}
+            <div class="container mt-4">
+                <tbody class="table-secondary text-center p-4">
+                    <tr>
+                        <th scope="row">{{student.admission_number}} </th>
+                        <td>{{ student.first_name }} {{student.last_name}}</td>
+                        <td>{{ student.mobile}} </td>
+                        <td> {{ student.fathers_name }}</td>
+                        <td>{{student.grade_section}}</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-info mb-2">View</a>
+                            <a href="" class="btn btn-sm btn-warning mb-2">Update info </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+</section>
+
+{% endblock content %}

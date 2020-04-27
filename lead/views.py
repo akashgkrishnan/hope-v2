@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
 # models
 from django.contrib.auth.models import User
 from appuser.models import user_role_map, role_details
@@ -237,3 +239,12 @@ def departments(request):  # for mapping deparment heads to department
             'form2': form2
         }
     return render(request, 'lead/departments.html', context)
+
+
+
+class StudentListView(LoginRequiredMixin, ListView):
+    model = student_details
+    template_name = 'lead/student_details_listview.html'
+    context_object_name = 'students'
+    ordering = ['-id']
+

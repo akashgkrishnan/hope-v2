@@ -13,9 +13,9 @@ def redirector(request):
     if actor.role.role_name == 'STUDENT':
         return redirect('lead-home')
     elif actor.role.role_name == 'TEACHER':
-        return redirect('lead-home')
+        return redirect('teacher-home')
     elif actor.role.role_name == 'LIBRARY':
-        return redirect('lead-home')
+        return redirect('librarian-home')
     elif actor.role.role_name == 'LEAD':
         return redirect('lead-home') 
     elif actor.role.role_name == 'MANAGEMENT':

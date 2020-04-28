@@ -15,7 +15,8 @@ from lead.models import (lead_user,
                          subject_grade_section,
                          grade_section_master
                          )
-from teacher.models import teacher_details, department_head, department
+from teacher.models import teacher_details, department_head, department, grade_class_teacher
+
 # forms
 from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
@@ -25,7 +26,7 @@ from lead.forms import (leadForm,
                         )
 
 from student.forms import studentForm, studentAddressForm, studentBusForm
-from teacher.forms import TeacherForm, departmentHeadForm, departmentForm
+from teacher.forms import TeacherForm, departmentHeadForm, departmentForm, gradeClassTeacherForm
 
 # Create your views here.
 
@@ -242,9 +243,31 @@ def departments(request):  # for mapping deparment heads to department
 
 
 
+@login_required
+def add_classteacher(request):
+    students = grade_class_teacher.objects.all()
+    if request.method == 'POST':
+        form = gradeClassTeacherForm(request.POST)
+        if form.is_valid():
+            form.save()
+            tcr = form.cleaned_data.get('teacher')
+            grd = form.cleaned_data.get('grade_section')
+            messages.success(request, f' {tcr} set as class teacher of {grd}')
+            return redirect('add-class-teacher')
+    else:
+        form = gradeClassTeacherForm()
+    return render(request, 'lead/add_classTeacher.html', {'form': form, 'title': 'Class Teacher', 'students': students})
+
+
+
 class StudentListView(LoginRequiredMixin, ListView):
     model = student_details
     template_name = 'lead/student_details_listview.html'
     context_object_name = 'students'
     ordering = ['-id']
 
+
+class TeacherListView(LoginRequiredMixin, ListView):
+    model = teacher_details
+    template_name = 'lead/teacher_details_listview.html'
+    context_object_name = 'teachers'

@@ -11,7 +11,8 @@ urlpatterns = [
     path('add-subject', views.subject_create, name='add-subject'),
     path('add-student', views.add_student, name='add-student'),
     path('add-teacher', views.add_teacher, name='add-teacher'),
+    path('add-class-teacher', views.add_classteacher, name='add-class-teacher'),
     path('departments', views.departments, name='departments'),
-    path('all-student', views.StudentListView.as_view(), name='all-student')
-
+    path('all-student', views.StudentListView.as_view(), name='all-student'),
+    path('all-teacher', views.TeacherListView.as_view(), name='all-teacher')
 ]

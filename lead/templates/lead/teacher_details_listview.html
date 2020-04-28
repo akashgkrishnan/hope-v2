@@ -22,24 +22,22 @@
         <caption>Student info</caption>
         <thead class="text-center bg-secondary text-muted">
             <tr>
-                <th scope="col">Admission No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Fathers Name</th>
-                <th scope="col">Mothers Name</th>
-                <th scope="col">Class and Section</th>
+                <th scope="col">id</th>
+                <th scope="col">employee code</th>
+                <th scope="col">name</th>
+                <th scope="col">mobile</th>
+                <th scope="col">email</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody class="text-center text-lowercase text-justify text-muted">
-            {% for student in students%}
+            {% for teacher in teachers%}
             <tr>
-                <th class="py-3" scope="row">{{student.admission_number}} </th>
-                <td class="py-3">{{ student.first_name }} {{student.last_name}}</td>
-                <td class="py-3">{{ student.mobile}} </td>
-                <td class="py-3"> {{ student.fathers_name }}</td>
-                <td class="py-3"> {{ student.mothers_name }}</td>
-                <td class="py-3 text-uppercase">{{student.grade_section}}</td>
+                <td class="py-3"> {{ teacher.id }}</td>
+                <th class="py-3" scope="row">{{teacher.emp_code}} </th>
+                <td class="py-3">{{ teacher.first_name }} {{teacher.last_name}}</td>
+                <td class="py-3">{{ teacher.mobile}} </td>
+                <td class="py-3"> {{ teacher.email }}</td>
                 <td class="py-3">
                     <a href="" class="btn btn-sm btn-info mb-2">View</a>
                     <a href="" class="btn btn-sm btn-warning mb-2">Update info </a>

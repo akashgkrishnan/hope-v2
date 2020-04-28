@@ -1,0 +1,74 @@
+{% extends "lead/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+    <h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+    <div class="row">
+        <div class="col">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="container border rounded mb-5" id='usercreation'>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container row">
+                <!-- <div class="col-md-6"> -->
+                <fieldset class="form-group col-md-6 offset-md-3">
+                    {{ form|crispy }}
+                </fieldset>
+
+    
+                <!-- </div> -->
+            </div>
+            <div class="form-group col-md-6 offset-md-3">
+                <button class="btn btn-lg text-white btn-block btn-primary" type="submit">
+                    Save
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="studentlist">
+    <table class="table table-responsive table-striped">
+        <caption>Class teachers</caption>
+        <thead class="text-center bg-primary text-white">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Class </th>
+                <th scope="col">Section</th>
+                <th scope="col">Class Teacher</th>
+                <th scope="col">Strength</th>
+
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center text-lowercase text-justify text-muted">
+            {% for student in students%}
+            <tr>
+                <th class="py-3" scope="row">{{student.id}} </th>
+                <td class="py-3 text-uppercase">{{ student.grade_section.grade }}</td>
+                <td class="py-3 text-uppercase">{{ student.grade_section.section}} </td>
+                <td class="py-3"> {{ student.teacher }}</td>
+                <td class="py-3"> dummy value</td>
+                <td class="py-3">
+                    <a href="" class="btn btn-sm btn-info mb-2">View</a>
+                    <a href="" class="btn btn-sm btn-warning mb-2">Update info </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</section>
+
+
+{% endblock content %}

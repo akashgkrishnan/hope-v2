@@ -6995,9 +6995,7 @@ label {
   font-weight: 100;
   font-family: "Nunito", sans-serif;
   margin-left: 50px;
-  margin-top: 50px;
-  padding-top: 4px;
-  padding-left: 4px; }
+  margin-top: 50px; }
 
 @media (max-width: 768px) {
   .navbar {

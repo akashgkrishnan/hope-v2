@@ -15,6 +15,9 @@ urlpatterns = [
     path('departments', views.departments, name='departments'),
     path('all-student', views.StudentListView.as_view(), name='all-student'),
     path('all-teacher', views.TeacherListView.as_view(), name='all-teacher'),
+    path('all-bus', views.allbusListView.as_view(), name='all-bus'),
     path('update-cteacher/<str:pk>', views.gradeTeacherUpdateView.as_view(), name='update-cteacher'),
-    path('update-teacher/<str:pk>', views.teacherdetailUpdateView.as_view(), name='update-teacher')
+    path('update-teacher/<str:pk>', views.teacherdetailUpdateView.as_view(), name='update-teacher'),
+    path('update-bus/<str:pk>', views.busdetailsUpdateView.as_view(), name='update-bus'),
+    path('test', views.test, name='test')
 ]

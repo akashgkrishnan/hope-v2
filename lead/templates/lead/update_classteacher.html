@@ -22,8 +22,11 @@
             {% csrf_token %}
             <div class="container row">
                 <!-- <div class="col-md-6"> -->
+                <fieldset disabled class="form-group col-md-6 offset-md-3">
+                    {{ form.grade_section|as_crispy_field }}
+                </fieldset>
                 <fieldset class="form-group col-md-6 offset-md-3">
-                    {{ form|crispy }}
+                    {{ form.teacher| as_crispy_field }}
                 </fieldset>
 
     
@@ -37,37 +40,6 @@
             </div>
         </form>
     </div>
-</section>
-
-<section class="studentlist">
-    <table class="table table-responsive table-striped">
-        <caption>Class teachers</caption>
-        <thead class="text-center bg-primary text-white">
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Class </th>
-                <th scope="col">Section</th>
-                <th scope="col">Class Teacher</th>
-                <th scope="col">Strength</th>
-
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody class="text-center text-lowercase text-justify text-muted">
-            {% for teacher in teachers%}
-            <tr>
-                <th class="py-3" scope="row">{{teacher.id}} </th>
-                <td class="py-3 text-uppercase">{{ teacher.grade_section.grade }}</td>
-                <td class="py-3 text-uppercase">{{ teacher.grade_section.section}} </td>
-                <td class="py-3"> {{ teacher.teacher }}</td>
-                <td class="py-3"> dummy value</td>
-                <td class="py-3">
-                    <a href="" class="btn btn-sm btn-info mb-2">View</a>
-                    <a href="{% url 'update-cteacher' teacher.id   %}" class="btn btn-sm btn-warning mb-2">Update info </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
 </section>
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from django.contrib.auth.models import User
 from lead.models import grade_section_master, subject_master
 
@@ -29,6 +30,9 @@ class teacher_details(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def get_absolute_url(self):
+        return reverse('all-teacher')
+
 
 class grade_class_teacher(models.Model):
     grade_section = models.OneToOneField(grade_section_master, on_delete=models.DO_NOTHING)
@@ -36,6 +40,9 @@ class grade_class_teacher(models.Model):
 
     def __str__(self):
         return f'{self.teacher} class teacher of {self.grade_section}'
+
+    def get_absolute_url(self):
+        return reverse('add-class-teacher')
 
 class teacher_subject_grade_section(models.Model):
     teacher = models.ForeignKey(teacher_details, on_delete=models.DO_NOTHING)

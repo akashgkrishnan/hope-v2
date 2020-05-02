@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 # models
 from django.contrib.auth.models import User
 from appuser.models import user_role_map, role_details
@@ -245,7 +245,7 @@ def departments(request):  # for mapping deparment heads to department
 
 @login_required
 def add_classteacher(request):
-    students = grade_class_teacher.objects.all()
+    teachers = grade_class_teacher.objects.all()
     if request.method == 'POST':
         form = gradeClassTeacherForm(request.POST)
         if form.is_valid():
@@ -256,7 +256,7 @@ def add_classteacher(request):
             return redirect('add-class-teacher')
     else:
         form = gradeClassTeacherForm()
-    return render(request, 'lead/add_classTeacher.html', {'form': form, 'title': 'Class Teacher', 'students': students})
+    return render(request, 'lead/add_classTeacher.html', {'form': form, 'title': 'Class Teacher', 'teachers': teachers})
 
 
 
@@ -271,3 +271,31 @@ class TeacherListView(LoginRequiredMixin, ListView):
     model = teacher_details
     template_name = 'lead/teacher_details_listview.html'
     context_object_name = 'teachers'
+
+
+
+
+class gradeTeacherUpdateView(LoginRequiredMixin, UpdateView ):
+    model = grade_class_teacher
+    fields = ['grade_section', 'teacher']
+    template_name = 'lead/update_classteacher.html'
+
+
+
+class teacherdetailUpdateView(LoginRequiredMixin, UpdateView):
+    model = teacher_details
+    fields = [
+        'first_name',
+        'last_name',
+        'emp_code',
+        'gender',
+        'email',
+        'mobile',
+        'adress',
+        'adress2',
+        'pincode',
+        'city',
+        'state',
+        'date_of_joining'
+    ]
+    template_name = 'lead/update_teacherdetails.html'

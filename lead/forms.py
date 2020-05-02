@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+from django.views.generic.dates import DateMixin
 from .models import lead_user, bus_master, event
 from student.models import (student_details,
                             student_address,
@@ -7,8 +8,9 @@ from student.models import (student_details,
 
 from teacher.models import grade_class_teacher
 
-class DateInput(forms.DateInput):
+class DateInput(forms.DateInput, DateMixin):
     input_type = 'date'
+    allow_future = False
 
 
 class leadForm(ModelForm):

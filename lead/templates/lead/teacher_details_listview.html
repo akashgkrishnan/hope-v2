@@ -40,7 +40,7 @@
                 <td class="py-3"> {{ teacher.email }}</td>
                 <td class="py-3">
                     <a href="" class="btn btn-sm btn-info mb-2">View</a>
-                    <a href="" class="btn btn-sm btn-warning mb-2">Update info </a>
+                    <a href="{% url 'update-teacher' teacher.id %}" class="btn btn-sm btn-warning mb-2">Update info </a>
                 </td>
             </tr>
             {% endfor %}

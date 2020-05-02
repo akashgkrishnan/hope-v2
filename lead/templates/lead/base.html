@@ -26,7 +26,7 @@
 
 <body>
     <nav class=" navbar navbar-expand-md navbar-dark bg-gradient-primary flex-md-nowrap" id=#dashboardnav>
-        <a href="" class="navbar-brand col-sm-3 col-md-2 mr-0">
+        <a href="{% url 'lead-home' %}" class="navbar-brand col-sm-3 col-md-2 mr-0">
             <h3 class="mb-0">
                 Stamp UI
             </h3>
@@ -70,7 +70,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{% url 'add-student' %}">Add student</a>
-                                <a class="dropdown-item" href="#">View students</a>
+                                <a class="dropdown-item" href="{% url 'all-student' %}">View students</a>
                                 <a class="dropdown-item" href="#">Update info</a>
                             </div>
                         </li>
@@ -82,7 +82,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="drops">
                                 <a class="dropdown-item" href="{%url 'add-teacher' %}">Add teachers</a>
-                                <a class="dropdown-item" href="#">View Teacher</a>
+                                <a class="dropdown-item" href="{% url 'all-teacher'%}">View Teacher</a>
                                 <a class="dropdown-item" href="{%url 'add-class-teacher' %}">Class Teachers</a>
 
                             </div>
@@ -184,7 +184,6 @@
             </main>
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

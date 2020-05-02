@@ -13,7 +13,8 @@ from lead.models import (lead_user,
                          subject_master,
                          subject_and_grade,
                          subject_grade_section,
-                         grade_section_master
+                         grade_section_master,
+                         bus_master
                          )
 from teacher.models import teacher_details, department_head, department, grade_class_teacher
 
@@ -224,7 +225,7 @@ def departments(request):  # for mapping deparment heads to department
         if form.is_valid() and form2.is_valid():
             form2.save()
             name = form2.cleaned_data.get('name')
-            d = department.objects.filter(name= name)[0]
+            d = department.objects.filter(name=name)[0]
             new_department_head = form.save(commit=False)
             new_department_head.department = d
             new_department_head.save()
@@ -272,6 +273,10 @@ class TeacherListView(LoginRequiredMixin, ListView):
     template_name = 'lead/teacher_details_listview.html'
     context_object_name = 'teachers'
 
+class allbusListView(LoginRequiredMixin, ListView):
+    model = bus_master
+    template_name = 'lead/all-bus.html'
+    context_object_name = 'transports'
 
 
 
@@ -299,3 +304,16 @@ class teacherdetailUpdateView(LoginRequiredMixin, UpdateView):
         'date_of_joining'
     ]
     template_name = 'lead/update_teacherdetails.html'
+
+
+
+
+
+class busdetailsUpdateView(LoginRequiredMixin, UpdateView):
+    model = bus_master
+    fields = ['bus_reg_number', 'owner_mobile', 'owner_name', 'status']
+    template_name = 'lead/update-bus.html'
+
+
+def test(request):
+    return render(request, 'lead/home.html')

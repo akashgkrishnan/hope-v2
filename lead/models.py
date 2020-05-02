@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -17,6 +18,8 @@ class bus_master(models.Model): #conductor nd driver info to be done
     def __str__(self):
         return self.bus_Route_start_to_end
 
+    def get_absolute_url(self):
+        return reverse('lead-home')
 
 class section_master(models.Model):
     section_name = models.CharField(max_length=1)

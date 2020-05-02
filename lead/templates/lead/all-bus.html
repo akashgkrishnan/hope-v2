@@ -17,32 +17,27 @@
         </div>
 </section>
 
-<section class="studentlist">
-    <table class="table table-responsive table-hover">
+<section class="studentlist row">
+    <table class="table table-responsive table-hover col-md-12">
         <caption>Student info</caption>
         <thead class="text-center bg-primary text-dark">
             <tr>
-                <th scope="col">Admission No</th>
-                <th scope="col">Name</th>
+                <th scope="col">Route Name</th>
+                <th scope="col">Owner name</th>
                 <th scope="col">Mobile</th>
-                <th scope="col">Fathers Name</th>
-                <th scope="col">Mothers Name</th>
-                <th scope="col">Class and Section</th>
+                <th scope="col">Reg no.</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody class="text-center table-primary text-lowercase text-justify text-dark">
-            {% for student in students%}
+            {% for bus in transports%}
             <tr>
-                <th class="py-3" scope="row">{{student.admission_number}} </th>
-                <td class="py-3">{{ student.first_name }} {{student.last_name}}</td>
-                <td class="py-3">{{ student.mobile}} </td>
-                <td class="py-3"> {{ student.fathers_name }}</td>
-                <td class="py-3"> {{ student.mothers_name }}</td>
-                <td class="py-3 text-uppercase">{{student.grade_section}}</td>
+                <td class="py-3">{{ bus.bus_Route_start_to_end }}</td>
+                <td class="py-3">{{ bus.owner_name}} </td>
+                <td class="py-3"> {{ bus.owner_mobile }}</td>
+                <td class="py-3"> {{ bus.bus_reg_number }}</td>
                 <td class="py-3">
-                    <a href="#" class="btn btn-sm btn-info mb-2">View</a>
-                    <a href="" class="btn btn-sm btn-warning mb-2">Update info </a>
+                    <a href="{% url 'update-bus' bus.id %}" class="btn btn-sm btn-warning mb-2">Update </a>
                 </td>
             </tr>
             {% endfor %}

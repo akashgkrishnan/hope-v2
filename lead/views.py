@@ -23,7 +23,8 @@ from appuser.forms import UserRegisterForm
 from mgmt.forms import managementForm
 from lead.forms import (leadForm,
                         busForm,
-                        createEventForm
+                        createEventForm,
+                        subjectSectionForm
                         )
 
 from student.forms import studentForm, studentAddressForm, studentBusForm
@@ -216,6 +217,24 @@ def subject_create(request):
     return render(request, 'lead/subject-form.html', context)
 
 
+@login_required
+def subjectSection(request):
+    if request.method == 'POST':
+        form = subjectSectionForm(request.POST)
+        sub = request.POST.get('subject_name')
+        new_subject = subject_master(subject_name=sub)
+        new_subject.save()
+        grade_section_id = request.POST.get('grade_section')
+        grade_section = grade_section_master.objects.get(id=grade_section_id)
+        new_subject_grade = subject_and_grade(subject=new_subject, grade=grade_section.grade)
+        new_subject_grade.save()
+        new_subject_grade_section = subject_grade_section(subject=new_subject, grade_section=grade_section)
+        new_subject_grade_section.save()
+        return redirect('lead-home')
+    else:
+        form = subjectSectionForm()
+    return render(request, 'lead/subjectSection.html', {'form': form, 'title': 'Subjects'})
+
 
 @login_required
 def departments(request):  # for mapping deparment heads to department
@@ -313,6 +332,7 @@ class busdetailsUpdateView(LoginRequiredMixin, UpdateView):
     model = bus_master
     fields = ['bus_reg_number', 'owner_mobile', 'owner_name', 'status']
     template_name = 'lead/update-bus.html'
+
 
 
 def test(request):

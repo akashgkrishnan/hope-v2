@@ -1,0 +1,38 @@
+{% extends "lead/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+<div class="row">
+    <div class="col">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div class="container rounded mb-5" id='customforms'>
+    <form action="{% url 'add-subject-section' %}" method="POST" class="border rounded">
+        {%csrf_token %}
+        <div class="form-group col-md-6 offset-md-3">
+            <label for="subject_name">
+                <h4 class="display-6 mt-5 mb-0 text-center text-primary">subject name</h4>
+            </label>
+            <input type="text" class="form-control" id="subject_name" placeholder="subject_name" name="subject_name">
+        </div>
+        <div class="form-group col-md-6 offset-md-3">
+            {{ form.grade_section|as_crispy_field }}
+        </div>
+        <button class="btn btn-primary text-white btn-block mt-2 col-md-6 offset-md-3 mb-4" type="submit">
+            Save
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

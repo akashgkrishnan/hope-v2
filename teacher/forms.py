@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 # models
-from .models import teacher_details, department_head, department, grade_class_teacher
+from .models import teacher_details, department_head, department, grade_class_teacher, teacher_subject_grade_section
 
 
 class DateInput(forms.DateInput):
@@ -47,3 +47,8 @@ class gradeClassTeacherForm(ModelForm):
         model = grade_class_teacher
         fields = '__all__'
         
+
+class subjectTeachersForm(ModelForm):
+    class Meta:
+        model = teacher_subject_grade_section
+        fields = '__all__'

@@ -92,3 +92,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+
+class exam_master(models.Model):
+    exam_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.exam_name
+

@@ -16,7 +16,7 @@ from lead.models import (lead_user,
                          grade_section_master,
                          bus_master
                          )
-from teacher.models import teacher_details, department_head, department, grade_class_teacher
+from teacher.models import teacher_details, department_head, department, grade_class_teacher, teacher_subject_grade_section
 
 # forms
 from appuser.forms import UserRegisterForm
@@ -28,9 +28,16 @@ from lead.forms import (leadForm,
                         )
 
 from student.forms import studentForm, studentAddressForm, studentBusForm
-from teacher.forms import TeacherForm, departmentHeadForm, departmentForm, gradeClassTeacherForm
+from teacher.forms import (
+    TeacherForm,
+    departmentHeadForm,
+    departmentForm,
+    gradeClassTeacherForm,
+    subjectTeachersForm
+)
 
 # Create your views here.
+
 
 @login_required
 def lead_index(request):
@@ -45,6 +52,7 @@ def lead_index(request):
         'teacher_count': teacher_count
     }
     return render(request, 'lead/lead-index.html', context)
+
 
 @login_required
 def create_management(request):
@@ -71,6 +79,7 @@ def create_management(request):
         form2 = UserRegisterForm()
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'Add management user'})
 
+
 @login_required
 def create_leaduser(request):
     if request.method == 'POST':
@@ -95,6 +104,7 @@ def create_leaduser(request):
         form2 = UserRegisterForm()
     return render(request, 'lead/save-user.html', {'form': form, 'form2': form2, 'title': 'lead user'})
 
+
 @login_required
 def add_student(request):
     if request.method == 'POST':
@@ -107,11 +117,11 @@ def add_student(request):
             first_name = form.cleaned_data.get('first_name')
             username = user_form.cleaned_data.get('username')
             user_form.save()
-            user = User.objects.filter(username = username)[0]
+            user = User.objects.filter(username=username)[0]
             new_student.user_name = user
             new_student.save()
-            user_role = role_details.objects.filter(role_name = 'STUDENT')[0]
-            new_user_role = user_role_map(stamp_user = user, role = user_role)
+            user_role = role_details.objects.filter(role_name='STUDENT')[0]
+            new_user_role = user_role_map(stamp_user=user, role=user_role)
             new_user_role.save()
             new_bus = bus_form.save(commit=False)
             new_bus.student = new_student
@@ -134,8 +144,8 @@ def add_student(request):
         'user_form': user_form
     }
 
-
     return render(request, 'lead/add-student.html', context)
+
 
 @login_required
 def add_teacher(request):
@@ -147,11 +157,11 @@ def add_teacher(request):
             first_name = form.cleaned_data.get('first_name')
             username = user_form.cleaned_data.get('username')
             user_form.save()
-            user = User.objects.filter(username = username)[0]
+            user = User.objects.filter(username=username)[0]
             new_teacher.user_name = user
             new_teacher.save()
-            user_role = role_details.objects.filter(role_name = 'TEACHER')[0]
-            new_user_role = user_role_map(stamp_user = user, role = user_role)
+            user_role = role_details.objects.filter(role_name='TEACHER')[0]
+            new_user_role = user_role_map(stamp_user=user, role=user_role)
             new_user_role.save()
             messages.success(request, f' {first_name} saved in system!')
             redirect('add-teacher')
@@ -166,6 +176,7 @@ def add_teacher(request):
     }
     return render(request, 'lead/add-teachers.html', context)
 
+
 @login_required
 def create_bus(request):
     if request.method == 'POST':
@@ -179,6 +190,7 @@ def create_bus(request):
         form = busForm()
     return render(request, 'lead/single-form.html', {'form': form, 'title': 'Add-Bus-Info'})
 
+
 @login_required
 def events(request):
     if request.method == 'POST':
@@ -191,6 +203,7 @@ def events(request):
     else:
         form = createEventForm()
     return render(request, 'lead/single-form.html', {'form': form, 'title': 'annual leaves'})
+
 
 @login_required
 def subject_create(request):
@@ -226,9 +239,11 @@ def subjectSection(request):
         new_subject.save()
         grade_section_id = request.POST.get('grade_section')
         grade_section = grade_section_master.objects.get(id=grade_section_id)
-        new_subject_grade = subject_and_grade(subject=new_subject, grade=grade_section.grade)
+        new_subject_grade = subject_and_grade(
+            subject=new_subject, grade=grade_section.grade)
         new_subject_grade.save()
-        new_subject_grade_section = subject_grade_section(subject=new_subject, grade_section=grade_section)
+        new_subject_grade_section = subject_grade_section(
+            subject=new_subject, grade_section=grade_section)
         new_subject_grade_section.save()
         return redirect('lead-home')
     else:
@@ -237,10 +252,32 @@ def subjectSection(request):
 
 
 @login_required
+def subject_teachers(request):
+    subject_teachers = teacher_subject_grade_section.objects.all()
+    if request.method == 'POST':
+        form = subjectTeachersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            subject = form.cleaned_data.get('subject')
+            teacher = form.cleaned_data.get('teacher')
+            grade = form.cleaned_data.get('grade_section')
+            messages.success(
+                request, f'{teacher} set as  {subject} teacher for {grade}')
+            return redirect('add-subject-teacher')
+    else:
+        form = subjectTeachersForm()
+    return render(request, 'lead/single-form.html', {
+        'form': form,
+        'title': 'subject teachers',
+        'subject_teachers': subject_teachers
+    })
+
+
+@login_required
 def departments(request):  # for mapping deparment heads to department
     if request.method == 'POST':
-        form =departmentHeadForm(request.POST)
-        form2 =departmentForm(request.POST)
+        form = departmentHeadForm(request.POST)
+        form2 = departmentForm(request.POST)
         if form.is_valid() and form2.is_valid():
             form2.save()
             name = form2.cleaned_data.get('name')
@@ -262,7 +299,6 @@ def departments(request):  # for mapping deparment heads to department
     return render(request, 'lead/departments.html', context)
 
 
-
 @login_required
 def add_classteacher(request):
     teachers = grade_class_teacher.objects.all()
@@ -279,7 +315,6 @@ def add_classteacher(request):
     return render(request, 'lead/add_classTeacher.html', {'form': form, 'title': 'Class Teacher', 'teachers': teachers})
 
 
-
 class StudentListView(LoginRequiredMixin, ListView):
     model = student_details
     template_name = 'lead/student_details_listview.html'
@@ -292,18 +327,17 @@ class TeacherListView(LoginRequiredMixin, ListView):
     template_name = 'lead/teacher_details_listview.html'
     context_object_name = 'teachers'
 
+
 class allbusListView(LoginRequiredMixin, ListView):
     model = bus_master
     template_name = 'lead/all-bus.html'
     context_object_name = 'transports'
 
 
-
-class gradeTeacherUpdateView(LoginRequiredMixin, UpdateView ):
+class gradeTeacherUpdateView(LoginRequiredMixin, UpdateView):
     model = grade_class_teacher
     fields = ['grade_section', 'teacher']
     template_name = 'lead/update_classteacher.html'
-
 
 
 class teacherdetailUpdateView(LoginRequiredMixin, UpdateView):
@@ -325,14 +359,10 @@ class teacherdetailUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'lead/update_teacherdetails.html'
 
 
-
-
-
 class busdetailsUpdateView(LoginRequiredMixin, UpdateView):
     model = bus_master
     fields = ['bus_reg_number', 'owner_mobile', 'owner_name', 'status']
     template_name = 'lead/update-bus.html'
-
 
 
 def test(request):

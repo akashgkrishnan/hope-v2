@@ -12,6 +12,7 @@ urlpatterns = [
     path('add-subject-section', views.subjectSection, name='add-subject-section'),
     path('add-student', views.add_student, name='add-student'),
     path('add-teacher', views.add_teacher, name='add-teacher'),
+    path('add-subject-teacher', views.subject_teachers, name='add-subject-teacher'),
     path('add-class-teacher', views.add_classteacher, name='add-class-teacher'),
     path('departments', views.departments, name='departments'),
     path('all-student', views.StudentListView.as_view(), name='all-student'),

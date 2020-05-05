@@ -1,20 +1,16 @@
-{% extends "lead/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "lead/base.html" %} {% load crispy_forms_tags %} {% block content %}
 <section>
     <h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
     <div class="row">
         <div class="col">
-            {% if messages %}
-            {% for message in messages %}
+            {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                 {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {% endfor %}
-            {% endif %}
+            {% endfor %} {% endif %}
         </div>
     </div>
     <div class="container border rounded mb-5" id='usercreation'>
@@ -62,7 +58,7 @@
                 <td class="py-3 table-primary text-uppercase">{{ teacher.teacher}} </td>
                 <td class="py-3 table-primary">
                     <a href="" class="btn btn-sm btn-info mb-2">View</a>
-                    <a href="#" class="btn btn-sm btn-warning mb-2">Update info </a>
+                    <a href="#" class="btn btn-sm btn-warning mb-2">Update info </a> my name is akash
                 </td>
             </tr>
             {% endfor %}

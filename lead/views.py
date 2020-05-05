@@ -254,6 +254,7 @@ def subjectSection(request):
 @login_required
 def subject_teachers(request):
     subject_teachers = teacher_subject_grade_section.objects.all()
+    print(subject_teachers)
     if request.method == 'POST':
         form = subjectTeachersForm(request.POST)
         if form.is_valid():
@@ -266,7 +267,7 @@ def subject_teachers(request):
             return redirect('add-subject-teacher')
     else:
         form = subjectTeachersForm()
-    return render(request, 'lead/single-form.html', {
+    return render(request, 'lead/subject-teachers.html', {
         'form': form,
         'title': 'subject teachers',
         'subject_teachers': subject_teachers

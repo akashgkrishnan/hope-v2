@@ -1,0 +1,15 @@
+body {
+    font-family: cortado, sans-serif;
+    font-weight: 150;
+    color: #eadefb;
+}
+
+#lead-navbar {
+    .nav-item {
+        .nav-link:hover {
+            font-size: 0.9rem;
+            background: #b388ff;
+            color: #eadefb;
+        }
+    }
+}

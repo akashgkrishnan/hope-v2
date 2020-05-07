@@ -12,10 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
     <!-- bootstrap sass -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="test.css"> {% if title%}
+    {% if title%}
     <title>{{title}}</title>
     {% else %}
     <title>stamp</title>
@@ -24,74 +25,70 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-gradient-primary">
+        <a href="" class="navbar-brand">stamp</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#lead-navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="lead-navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link dropdown" id="dropdownMenuLink" data-toggle="dropdown">
+                    <a href="" class="btn nav-link">
                         <i class="fas fa-home pr-1"></i>home
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-user-graduate pr-1"></i>students
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-chalkboard-teacher pr-1"></i>teachers
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-user-plus pr-1"></i>admissions
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-book-reader pr-1"></i>subjects
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-chalkboard-teacher pr-1"></i>exams
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-bus pr-1"></i>transport
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-bullhorn pr-1"></i>announcements
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-hashtag pr-1"></i>events
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-images pr-1"></i>gallery
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-users pr-1"></i>users
                     </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="btn nav-link">
                         <i class="fas fa-sign-out-alt pr-1"></i>logout
                     </a>
                 </li>

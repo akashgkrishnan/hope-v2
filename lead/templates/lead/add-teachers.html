@@ -1,19 +1,15 @@
-{% extends "lead/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-<h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+{% extends "lead/home.html" %} {% load crispy_forms_tags %} {% block content %}
+<h1 class="text-center text-secondary display-4 form-heading">{{ title }}</h1>
 <div class="row">
     <div class="col">
-        {% if messages %}
-        {% for message in messages %}
+        {% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
             {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {% endfor %}
-        {% endif %}
+        {% endfor %} {% endif %}
     </div>
 </div>
 
@@ -21,7 +17,7 @@
     <div class="container rounded mb-5" id="student-forms">
         <form method="post">
             {% csrf_token %}
-            <h2 class="text-primary">Basic</h2>
+            <h2 class="text-secondary">Basic</h2>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     {{form.first_name|as_crispy_field }}
@@ -33,7 +29,7 @@
                     {{form.emp_code|as_crispy_field }}
                 </div>
             </div>
-            <h2 class="text-primary">Contact</h2>
+            <h2 class="text-secondary">Contact</h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {{form.gender|as_crispy_field }}
@@ -50,7 +46,7 @@
                     {{form.mobile|as_crispy_field }}
                 </div>
             </div>
-            <h2 class="text-primary">Adress</h2>
+            <h2 class="text-secondary">Adress</h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {{form.adress|as_crispy_field }}
@@ -70,7 +66,7 @@
                     {{form.pincode|as_crispy_field }}
                 </div>
             </div>
-            <h2 class="text-primary">student login signup</h2>
+            <h2 class="text-secondary">student login signup</h2>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     {{user_form.username|as_crispy_field }}
@@ -84,7 +80,7 @@
             </div>
 
             <div class="form-group col-md-6 offset-md-3">
-                <button class="btn text-white btn-block btn-primary" type="submit">
+                <button class="btn text-white btn-block btn-success" type="submit">
                     Save
                     <i class="fas fa-arrow-right"></i>
                 </button>
@@ -94,6 +90,3 @@
 </section>
 
 {% endblock %}
-
-
-

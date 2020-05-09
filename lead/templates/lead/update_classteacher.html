@@ -1,23 +1,19 @@
-{% extends "lead/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "lead/home.html" %} {% load crispy_forms_tags %} {% block content %}
 <section>
-    <h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+    <h1 class="text-center text-secondary display-4 form-heading">{{ title }}</h1>
     <div class="row">
         <div class="col">
-            {% if messages %}
-            {% for message in messages %}
+            {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                 {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {% endfor %}
-            {% endif %}
+            {% endfor %} {% endif %}
         </div>
     </div>
-    <div class="container border rounded mb-5" id='usercreation'>
+    <div class="container mb-5" id='usercreation'>
         <form method="POST">
             {% csrf_token %}
             <div class="container row">
@@ -29,11 +25,11 @@
                     {{ form.teacher| as_crispy_field }}
                 </fieldset>
 
-    
+
                 <!-- </div> -->
             </div>
             <div class="form-group col-md-6 offset-md-3">
-                <button class="btn btn-lg text-white btn-block btn-primary" type="submit">
+                <button class="btn btn-lg text-white btn-block btn-success" type="submit">
                     Save
                     <i class="fas fa-arrow-right"></i>
                 </button>

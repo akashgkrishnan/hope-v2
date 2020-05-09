@@ -1,5 +1,4 @@
-{% load static %}
-{% load crispy_forms_tags %}
+{% load static %} {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
     <!-- bootstrap sass -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
 
@@ -40,16 +38,17 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated%}
                     <li class="nav-item ml-auto">
-                      <a href="{% url 'logout' %}" class="nav-link">
-                        Logout
-                        <img src="{{ user.profile.image.url }} " class="rounded d-none d-md-inline profileimage" alt=""> 
-                      </a>
+                        <a href="{% url 'logout' %}" class="nav-link">
+                            Logout
+                            <img src="{{ user.profile.image.url }} " class="rounded d-none d-md-inline profileimage"
+                                alt="">
+                        </a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                      <a href="{% url 'login' %}" class="nav-link">
-                        login
-                      </a>
+                        <a href="{% url 'login' %}" class="nav-link">
+                            login
+                        </a>
                     </li>
                     {% endif %}
                 </ul>
@@ -60,44 +59,53 @@
 
 
 
-    <section class="headings">
-        <h2 class="display-4 lead mb-5">
-            Hello {{request.user.first_name}}
-        </h2>
-    </section>
-
-    <section class="usercounts row justify-content-around">
-        <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox1 justify-content-around">
-            <h3>
-                Books
-            </h3>
-            <p class="lead">
-                {{ sum_all_books }}
-            </p>
-        </div>
-        <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox2 justify-content-around">
-            <h3>
-                Out to students
-            </h3>
-            <p class="lead">
-                dummy
-            </p>
-        </div>
-        <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox3 justify-content-around">
-            <h3>
-                delay in return
-            </h3>
-            <p class="lead">
-             dummy     
-            </p>
+    <section id='welcomeText'>
+        <div class="container-fluid p-3">
+            <span class="btn bg-gradient-primary rounded disabled shadow-lg display-5 text-secondary ml-3">
+                Hello {{request.user}} !!
+            </span>
         </div>
     </section>
 
-    <section id="book_form" class="container-fluid rounded my-5">
+
+    <section id='usercounts justify-content-around'>
         <div class="row">
-            <form method="POST" action='add-library-books' class="border col-md-6 order-2 order-md-1">
+            <div class="btn py-3 text-secondary bg-gradient-primary col-md-3 mx-5 mb-3 shadow">
+                <h3>
+                    Books
+                </h3>
+                <p class="lead">
+                    {{summ_all_books}}
+                </p>
+            </div>
+            <div class="btn py-3 text-secondary bg-gradient-primary col-md-3 mx-5 mb-3 shadow">
+                <h3>
+                    out
+                </h3>
+                <p class="lead">
+                    dummy
+                </p>
+            </div>
+            <div class="btn py-3 text-secondary bg-gradient-primary col-md-3 mx-5 mb-3 shadow">
+                <h3>
+                    delayed
+                </h3>
+                <p class="lead">
+                    dummy
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="book_form" class="container-fluid my-5">
+        <div class="row">
+            <form method="POST" action='add-library-books' class="col-md-6 order-2 order-md-1">
                 {% csrf_token %}
                 <div class="container">
+                    <h3 class="text-center text-secondary">
+                        Add new books
+                    </h3>
                     <!-- <div class="col-md-6"> -->
                     <fieldset class="form-group">
                         {{ form|crispy }}
@@ -105,7 +113,7 @@
                     <!-- </div> -->
                 </div>
                 <div class="form-group">
-                    <button class="btn btn text-white btn-block btn-primary" type="submit">
+                    <button class="btn btn text-white btn-block btn-success" type="submit">
                         Save
                         <i class="fas fa-arrow-right"></i>
                     </button>
@@ -113,7 +121,7 @@
             </form>
             <div class="table-responsive col-md-6 order-1 order-md-2">
                 <table class="table table-hover">
-                    <thead class="bg-gradient-secondary text-center">
+                    <thead class="bg-gradient-primary text-center text-white">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
@@ -124,12 +132,12 @@
                     </thead>
                     <tbody>
                         {% for book in books%}
-                        <tr class="table-secondary text-center">
+                        <tr class="text-secondary text-center">
                             <th scope="row">{{book.id}}</th>
-                            <td >{{book.book_name}}</td>
-                            <td >{{book.book_author}}</td>
-                            <td >{{book.genre}}</td>
-                            <td >{{ book.number_of_books }}</td>
+                            <td>{{book.book_name}}</td>
+                            <td>{{book.book_author}}</td>
+                            <td>{{book.genre}}</td>
+                            <td>{{ book.number_of_books }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -140,15 +148,9 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 

@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container rounded mb-5" id='customforms'>
-    <form action="{% url 'add-subject-section' %}" method="POST" class="border rounded">
+    <form action="{% url 'add-subject-section' %}" method="POST">
         {%csrf_token %}
         <div class="form-group col-md-6 offset-md-3">
             <label for="subject_name">
@@ -24,7 +24,7 @@
         <div class="form-group col-md-6 offset-md-3">
             {{ form.grade_section|as_crispy_field }}
         </div>
-        <button class="btn btn-primary text-white btn-block mt-2 col-md-6 offset-md-3 mb-4" type="submit">
+        <button class="btn btn-success text-white btn-block mt-2 col-md-6 offset-md-3 mb-4" type="submit">
             Save
             <i class="fas fa-arrow-right"></i>
         </button>

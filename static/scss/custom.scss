@@ -1,6 +1,7 @@
 body {
     font-family: cortado, sans-serif;
     font-weight: 100;
+    font-size: 0.9rem;
     color: #eadefb;
     background: #1f1f1f;
 }
@@ -17,6 +18,10 @@ body {
 
 #usercounts {
     font-size: 0.9rem;
+}
+
+.loginicon {
+    margin-left: 120px;
 }
 
 @media(max-width: 768px) {}

@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container rounded mb-5" id='customforms'>
-    <form action="{% url 'add-subject' %}" method="POST" class="border rounded">
+    <form action="{% url 'add-subject' %}" method="POST">
         {%csrf_token %}
         <div class="form-group col-md-6 offset-md-3">
             <label for="subject_name">
@@ -32,32 +32,27 @@
             </div>
             {%endfor %}
         </div>
-        <button class="btn btn-primary text-white btn-block mt-2 col-md-6 offset-md-3 mb-4" type="submit">
+        <button class="btn btn-success text-white btn-block mt-2 col-md-6 offset-md-3 mb-4" type="submit">
             Save
             <i class="fas fa-arrow-right"></i>
         </button>
     </form>
 </div>
 
-<section id="subject_table">
+<section>
     <div class="container row">
         <div class="table-responsive col-md-6 order-1 order-md-2">
-            <table class="table table-hover">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">All subjects</th>
-                    </tr>
-                </thead>
-                <thead class="text-white  bg-primary text-center">
+            <table class="table">
+                <thead class="text-white  bg-gradient-primary text-center">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">subject</th>
                         <th scope="col">grade</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-white  bg-gradient-primary text-center">
                     {% for sub in subjects%}
-                    <tr class="table-primary text-center">
+                    <tr class="text-center">
                         <th scope="row">{{sub.id}}</th>
                         <td>{{sub.subject}}</td>
                         <td>{{sub.grade}}</td>

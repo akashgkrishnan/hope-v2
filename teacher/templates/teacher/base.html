@@ -1,5 +1,4 @@
-{% load crispy_forms_tags %}
-{% load static %}
+{% load crispy_forms_tags %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
     <!-- bootstrap sass -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
 
@@ -39,16 +37,16 @@
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated%}
                 <li class="nav-item ml-auto">
-                  <a href="{% url 'logout' %}" class="nav-link">
-                      logout
-                    <img src="{{ user.profile.image.url }} " class="rounded d-none d-md-inline profileimage" alt=""> 
-                  </a>
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        logout
+                        <img src="{{ user.profile.image.url }} " class="rounded d-none d-md-inline profileimage" alt="">
+                    </a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                  <a href="{% url 'login' %}" class="nav-link">
-                    login
-                  </a>
+                    <a href="{% url 'login' %}" class="nav-link">
+                        login
+                    </a>
                 </li>
                 {% endif %}
             </ul>
@@ -56,145 +54,14 @@
     </nav>
 
 
-    <div class="container-fluid mt-5">
-        <div class="row">
-            <div class="col-md-2 bg-light d-none d-md-block sidebar">
-                <div class="left-sidebar">
-                    <ul class="nav flex-column sidebar-nav">
-                        <li class="nav-item sidenavdrop">
-                            <a href="{%url 'lead-home' %}" class="nav-link"> <i class="fas fa-home px-2"></i>Home</a>
-                        </li>
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-graduate px-2"></i>Students
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-student' %}">Add student</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-chalkboard-teacher px-2"></i>Teachers
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{%url 'add-teacher' %}">Add teachers</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-book-reader px-2"></i>Subjects
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-subject' %}">add subjects</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-chalkboard-teacher px-2"></i>Exams
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bus px-2"></i>Transport
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-bus' %}">Add a new bus</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bullhorn px-2"></i>Announce
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Send ptm invites</a>
-                                <a class="dropdown-item" href="#">important notices</a>
-                                <a class="dropdown-item" href="#">Contact Fee defaulters</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-users px-2"></i>Users
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-management' %}">management user</a>
-                                <a class="dropdown-item" href="{% url 'add-leaduser' %}">erp admins</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-plus px-2"></i>Admissions
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item sidenavdrop">
-                            <a href="#" class="nav-link"><i class="fas fa-images px-2"></i>Event galley</a>
-                        </li>
-
-                        <li class="nav-item dropdown sidenavdrop">
-                            <a class="nav-link dropdown-toggle" href="#" id="drops" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cogs px-2"></i>Extra
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="drops">
-                                <a class="dropdown-item" href="{% url 'add-event' %}">events & leaves</a>
-                                <a class="dropdown-item" href="#">departments and clubs</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                {% block content %}
-
-                {% endblock %}
-            </main>
-        </div>
-    </div>
+    <main role="main" class="ml-sm-auto px-4">
+        {% block content %} {% endblock %}
+    </main>
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 

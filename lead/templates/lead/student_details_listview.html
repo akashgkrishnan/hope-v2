@@ -1,26 +1,22 @@
-{% extends "lead/base.html" %}
-{% block content %}
+{% extends "lead/home.html" %} {% block content %}
 
 <section>
     <div class="jumbotron-fluid">
         <div class="container">
-            {% if messages %}
-            {% for message in messages %}
+            {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                 {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
-                {% endfor %}
-                {% endif %}
+                </button> {% endfor %} {% endif %}
             </div>
         </div>
 </section>
 
 <section class="studentlist">
-    <table class="table table-responsive table-hover">
+    <table class="table table-responsive">
         <caption>Student info</caption>
-        <thead class="text-center bg-primary text-dark">
+        <thead class="text-center bg-gradient-primary text-white">
             <tr>
                 <th scope="col">Admission No</th>
                 <th scope="col">Name</th>
@@ -31,7 +27,7 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody class="text-center table-primary text-lowercase text-justify text-dark">
+        <tbody class="text-center text-lowercase text-justify text-secondary">
             {% for student in students%}
             <tr>
                 <th class="py-3" scope="row">{{student.admission_number}} </th>

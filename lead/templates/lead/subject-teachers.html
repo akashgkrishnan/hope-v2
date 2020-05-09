@@ -1,6 +1,6 @@
-{% extends "lead/base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "lead/home.html" %} {% load crispy_forms_tags %} {% block content %}
 <section>
-    <h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+    <h1 class="text-center text-secondary display-4 form-heading">{{ title }}</h1>
     <div class="row">
         <div class="col">
             {% if messages %} {% for message in messages %}
@@ -35,7 +35,7 @@
     </div>
 </section>
 
-<section id="studentlist">
+<section>
     <table class="table table-responsive table-striped">
         <caption>Subject teachers</caption>
         <thead class="text-center bg-primary text-white">

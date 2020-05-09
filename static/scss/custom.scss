@@ -1,7 +1,8 @@
 body {
     font-family: cortado, sans-serif;
-    font-weight: 150;
+    font-weight: 100;
     color: #eadefb;
+    background: #1f1f1f;
 }
 
 #lead-navbar {
@@ -13,3 +14,9 @@ body {
         }
     }
 }
+
+#usercounts {
+    font-size: 0.9rem;
+}
+
+@media(max-width: 768px) {}

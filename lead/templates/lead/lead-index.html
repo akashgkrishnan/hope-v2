@@ -1,47 +1,51 @@
-{% extends "lead/base.html" %}
-{% block content %}
+{% extends "lead/home.html" %} {% block content %}
 
-<section class="headings">
-    <h2 class="display-4 lead mb-5">
-        Hello  {{ user }}! 
-    </h2>
-</section>
-
-<section class="usercounts row justify-content-around">
-    <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox1 justify-content-around">
-        <h3>
-            students
-        </h3>
-        <p class="lead">
-            {{ student_count }}
-        </p>
-    </div>
-    <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox2 justify-content-around">
-        <h3>
-            management 
-        </h3>
-        <p class="lead">
-            {{ management_count }}
-        </p>
-    </div>
-    <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox3 justify-content-around">
-        <h3>
-            admins
-        </h3>
-        <p class="lead">
-            {{ lead_count }}
-        </p>
-    </div>
-    <div class="button btn text-white lead px-5 pt-5 m-1 mb-1 col-md-2 countbox4 justify-content-around">
-        <h3>
-            teachers
-        </h3>
-        <p class="lead">
-            {{ teacher_count }}
-        </p>
+<section id='welcomeText'>
+    <div class="container-fluid p-3">
+        <span class="btn bg-gradient-primary rounded disabled shadow-lg display-5 text-secondary ml-3">
+            Hello {{request.user}} !!
+        </span>
     </div>
 </section>
 
+<hr class="shadow-lg mb-4">
+
+<section id='usercounts justify-content-around'>
+    <div class="row">
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+            <h3>
+                students
+            </h3>
+            <p class="lead">
+                {{student_count}}
+            </p>
+        </div>
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+            <h3>
+                teachers
+            </h3>
+            <p class="lead">
+                {{teacher_count}}
+            </p>
+        </div>
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+            <h3>
+                admins
+            </h3>
+            <p class="lead">
+                {{ lead_count }}
+            </p>
+        </div>
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+            <h3>
+                management
+            </h3>
+            <p class="lead">
+                {{ management_count }}
+            </p>
+        </div>
+    </div>
+</section>
 
 
 {% endblock content %}

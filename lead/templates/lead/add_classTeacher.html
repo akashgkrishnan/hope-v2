@@ -1,20 +1,16 @@
-{% extends "lead/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "lead/home.html" %} {% load crispy_forms_tags %} {% block content %}
 <section>
-    <h1 class="text-center text-primary display-4 form-heading">{{ title }}</h1>
+    <h1 class="text-center text-secondary display-4 form-heading">{{ title }}</h1>
     <div class="row">
         <div class="col">
-            {% if messages %}
-            {% for message in messages %}
+            {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                 {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {% endfor %}
-            {% endif %}
+            {% endfor %} {% endif %}
         </div>
     </div>
     <div class="container border rounded mb-5" id='usercreation'>
@@ -26,7 +22,7 @@
                     {{ form|crispy }}
                 </fieldset>
 
-    
+
                 <!-- </div> -->
             </div>
             <div class="form-group col-md-6 offset-md-3">

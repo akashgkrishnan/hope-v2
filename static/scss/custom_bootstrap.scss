@@ -1,4 +1,4 @@
 // override default colors
-$theme-colors: ( "primary": #6200ea, "secondary": #b388ff, "info": #1de9b6, "warning": #fdd835, );
+$theme-colors: ( "primary": #1f1f1f, "secondary": #b388ff, "info": #1de9b6, "warning": #fdd835, );
 $enable-gradients: true;
 @import "../bootstrap/scss/bootstrap";

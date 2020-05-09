@@ -6,14 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
     <!-- bootstrap sass -->
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
-
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2b162d97cd.js" crossorigin="anonymous"></script>
     {% if title%}
@@ -24,79 +21,166 @@
 </head>
 
 <body>
+    <section>
+        <nav class="navbar navbar-expand-md navbar-dark bg-gradient-primary">
+            <a href="" class="navbar-brand">STAMP</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#lead-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-sm-left" id="lead-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="" class="btn nav-link">
+                            <i class="fas fa-home pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                home
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="btn nav-link" id="students" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-graduate pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                students
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="students">
+                            <a class="dropdown-item text-secondary" href="{% url 'add-student' %}">add students</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'all-student' %}">view students</a>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-gradient-primary">
-        <a href="" class="navbar-brand">stamp</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#lead-navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="lead-navbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="" class="btn nav-link">
-                        <i class="fas fa-home pr-1"></i>home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-user-graduate pr-1"></i>students
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-chalkboard-teacher pr-1"></i>teachers
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-user-plus pr-1"></i>admissions
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-book-reader pr-1"></i>subjects
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-chalkboard-teacher pr-1"></i>exams
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-bus pr-1"></i>transport
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-bullhorn pr-1"></i>announcements
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-hashtag pr-1"></i>events
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-images pr-1"></i>gallery
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-users pr-1"></i>users
-                    </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a href="#" class="btn nav-link">
-                        <i class="fas fa-sign-out-alt pr-1"></i>logout
-                    </a>
-                </li>
-            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="teachers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-chalkboard-teacher pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                teachers
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="teachers">
+                            <a class="dropdown-item text-secondary" href="{%url 'add-teacher' %}">add teachers</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'all-teacher'%}">view teachers</a>
+                            <a class="dropdown-item text-secondary" href="{%url 'add-class-teacher' %}">class teachers</a>
 
-        </div>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="admissions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-plus pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                admissions
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="admissions">
+                            <a class="dropdown-item text-secondary" href="#">admission</a>
+                            <a class="dropdown-item text-secondary" href="#">update records</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="subjects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-book-reader pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                subjects
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="subjects">
+                            <a class="dropdown-item text-secondary" href="{% url 'add-subject' %}">add subjects(class)</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'add-subject-section' %}">add subjects(section)</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'add-subject-teacher' %}">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="exams" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-chalkboard-teacher pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                exams
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="exams">
+                            <a class="dropdown-item text-secondary" href="#">exams(class)</a>
+                            <a class="dropdown-item text-secondary" href="#">exam(section)</a>
+                            <a class="dropdown-item text-secondary" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="transport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bus pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                transport
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="transport">
+                            <a class="dropdown-item text-secondary" href="{% url 'add-bus' %}">add a new bus</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'all-bus' %}">view bus</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="announcements" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bullhorn pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                announcements
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="announcements">
+                            <a class="dropdown-item text-secondary" href="#">send invites</a>
+                            <a class="dropdown-item text-secondary" href="#">make announcement</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="events">
+                            <i class="fas fa-hashtag pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                gallery
+                            </span>
+                        </a>
 
-    </nav>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="gallery" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-images pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                events
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="gallery">
+                            <a class="dropdown-item text-secondary" href="{% url 'add-event' %}">events/leaves</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'departments' %}">departments</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1 dropdown">
+                        <a href="#" class="btn nav-link" id="users" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-users pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                users
+                            </span>
+                        </a>
+                        <div class="dropdown-menu bg-gradient-primary" aria-labelledby="users">
+                            <a class="dropdown-item text-secondary" href="{% url 'add-leaduser' %}">add admins</a>
+                            <a class="dropdown-item text-secondary" href="{% url 'add-management' %}">add management</a>
+                            <a class="dropdown-item text-secondary" href="#">update librarian</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a href="#" class="btn nav-link">
+                            <i class="fas fa-sign-out-alt pr-1 shadow"></i>
+                            <span class="navLinks shadow">
+                                logout
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+
+
+    <hr class="shadow-lg my-4"> {% block content %} {% endblock %}
+
+    <section>
+
+
+    </section>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -62,16 +62,16 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">task name </th>
-                        <th scope="col">status</th>
+                        <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for task in todos %} {% if not task_status %}
+                    {% for task in todos %} {% if not task.task_status %}
                     <tr class="text-center text-secondary">
                         <th scope="row">{{ task.id }}</th>
                         <td>{{ task.task_name }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-success mb-2">mark as done</a>
+                            <a href="{% url 'complete' task.id %}" class="btn btn-sm btn-success mb-2">mark as done</a>
                         </td>
                     </tr>
                     {% endif %} {% endfor %}
@@ -109,16 +109,16 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">task name </th>
-                        <th scope="col">status</th>
+                        <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for task in todos %} {% if not task_status %}
+                    {% for task in todos %} {% if task.task_status %}
                     <tr class="text-center text-secondary">
                         <th scope="row">{{ task.id }}</th>
                         <td>{{ task.task_name }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-success mb-2">mark as done</a>
+                            <a href="#" class="btn btn-sm btn-danger mb-2">delete</a>
                         </td>
                     </tr>
                     {% endif %} {% endfor %}

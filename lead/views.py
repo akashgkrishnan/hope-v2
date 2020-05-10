@@ -49,7 +49,7 @@ def lead_index(request):
     lead_count = lead_user.objects.count()
     teacher_count = teacher_details.objects.count()
     todo_form = todoForm()
-    all_todos = todos.objects.all()
+    all_todos = todos.objects.filter(user = request.user)
     context = {
         'student_count': student_count,
         'management_count': management_count,
@@ -288,6 +288,13 @@ def create_todos(request):
     new_todos = todos(task_name=task_name, user=user)
     new_todos.save()
     return redirect('lead-home')
+
+@login_required
+def complete(request, pk):
+	todo = todos.objects.get(pk = pk)
+	todo.task_status = True
+	todo.save()
+	return redirect('lead-home')
 
 
 @login_required

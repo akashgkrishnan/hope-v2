@@ -101,3 +101,25 @@ class exam_master(models.Model):
     def __str__(self):
         return self.exam_name
 
+class todos(models.Model):
+    task_name = models.CharField(max_length=35)
+    task_status = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.task_name
+
+
+'''
+class admission_info(models.Model):
+    name_of_applicant = models.CharField(max_length=95)
+    dob = models.DateField()
+    fathers_name = models.CharField(max_length=95)
+    mothers_name = models.CharField(max_length=95)
+    mobile = models.CharField(max_length=10)
+    email = models.EmailField(null=True)
+    id_proof = models.CharField(max_length=130)
+'''
+
+
+    

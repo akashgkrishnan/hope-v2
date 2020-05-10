@@ -14,11 +14,11 @@
 </div>
 
 <section>
-    <div class="container rounded mb-5" id="student-forms">
+    <div class="container  mb-5" id="student-forms">
         <form method="post">
             {% csrf_token %}
             <h2 class="text-secondary">Basic</h2>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-4">
                     {{form.first_name|as_crispy_field }}
                 </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <h2 class="text-secondary">Contact</h2>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-6">
                     {{form.gender|as_crispy_field }}
                 </div>
@@ -38,7 +38,7 @@
                     {{form.date_of_joining|as_crispy_field }}
                 </div>
             </div>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-6">
                     {{form.email|as_crispy_field }}
                 </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <h2 class="text-secondary">Adress</h2>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-6">
                     {{form.adress|as_crispy_field }}
                 </div>
@@ -55,7 +55,7 @@
                     {{form.adress2|as_crispy_field }}
                 </div>
             </div>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-4">
                     {{form.city|as_crispy_field }}
                 </div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <h2 class="text-secondary">student login signup</h2>
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-4">
                     {{user_form.username|as_crispy_field }}
                 </div>

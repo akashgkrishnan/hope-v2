@@ -1,4 +1,4 @@
-{% extends "lead/home.html" %} {% block content %}
+{% extends "lead/home.html" %} {% block content %} {% load crispy_forms_tags %}
 
 <section id='welcomeText'>
     <div class="container-fluid p-3">
@@ -45,6 +45,88 @@
             </p>
         </div>
     </div>
+</section>
+
+
+<section class="row">
+
+
+    <div class="col-md-4 my-5 shadow" id='task_lists'>
+        <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+            pending
+        </h3>
+
+        <div class="table-responsive ">
+            <table class="table">
+                <thead class="text-white  bg-gradient-primary text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">task name </th>
+                        <th scope="col">status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in todos %} {% if not task_status %}
+                    <tr class="text-center text-secondary">
+                        <th scope="row">{{ task.id }}</th>
+                        <td>{{ task.task_name }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-success mb-2">mark as done</a>
+                        </td>
+                    </tr>
+                    {% endif %} {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="col-md-4 my-5 shadow bg-gradient-primary" id='task_creation_forms'>
+        <form method="POST" action="{% url 'add-tasks' %}">
+            {% csrf_token %}
+            <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+                create tasks
+            </h3>
+            <!-- <div class="col-md-6"> -->
+            <fieldset class="form-group row ml-5">
+                {{ todoForm|crispy }}
+            </fieldset>
+            <button class="btn text-white btn-success form-group row ml-5" type="submit">
+                Save
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <div class="col-md-4 my-5 shadow" id='task_lists'>
+        <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+            completed
+        </h3>
+
+        <div class="table-responsive ">
+            <table class="table">
+                <thead class="text-white  bg-gradient-primary text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">task name </th>
+                        <th scope="col">status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in todos %} {% if not task_status %}
+                    <tr class="text-center text-secondary">
+                        <th scope="row">{{ task.id }}</th>
+                        <td>{{ task.task_name }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-success mb-2">mark as done</a>
+                        </td>
+                    </tr>
+                    {% endif %} {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </section>
 
 

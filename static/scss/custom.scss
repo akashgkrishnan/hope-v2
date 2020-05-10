@@ -1,9 +1,11 @@
 body {
     font-family: cortado, sans-serif;
     font-weight: 100;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #eadefb;
     background: #1f1f1f;
+    opacity: 0.7;
+    line-height: 2.2;
 }
 
 #lead-navbar {
@@ -22,6 +24,31 @@ body {
 
 .loginicon {
     margin-left: 120px;
+}
+
+#heading {
+    color: #eadefb;
+    opacity: 0.7;
+}
+
+.loginform {
+    font-size: 1.1rem;
+    margin-top: 100px;
+}
+
+#navlinks {
+    .nav-item {
+        .nav-link {
+            font-size: 1.1rem;
+        }
+        .nav-link:hover {
+            border-bottom: 1px solid white;
+        }
+    }
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
 }
 
 @media(max-width: 768px) {}

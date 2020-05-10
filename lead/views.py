@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, UpdateView
+from django.views.decorators.http import require_POST
 # models
 from django.contrib.auth.models import User
 from appuser.models import user_role_map, role_details
@@ -14,7 +15,8 @@ from lead.models import (lead_user,
                          subject_and_grade,
                          subject_grade_section,
                          grade_section_master,
-                         bus_master
+                         bus_master,
+                         todos
                          )
 from teacher.models import teacher_details, department_head, department, grade_class_teacher, teacher_subject_grade_section
 
@@ -24,7 +26,8 @@ from mgmt.forms import managementForm
 from lead.forms import (leadForm,
                         busForm,
                         createEventForm,
-                        subjectSectionForm
+                        subjectSectionForm,
+                        todoForm
                         )
 
 from student.forms import studentForm, studentAddressForm, studentBusForm
@@ -45,11 +48,15 @@ def lead_index(request):
     management_count = management_user.objects.count()
     lead_count = lead_user.objects.count()
     teacher_count = teacher_details.objects.count()
+    todo_form = todoForm()
+    all_todos = todos.objects.all()
     context = {
         'student_count': student_count,
         'management_count': management_count,
         'lead_count': lead_count,
-        'teacher_count': teacher_count
+        'teacher_count': teacher_count,
+        'todoForm': todo_form,
+        'todos': all_todos
     }
     return render(request, 'lead/lead-index.html', context)
 
@@ -272,6 +279,15 @@ def subject_teachers(request):
         'title': 'subject teachers',
         'subject_teachers': subject_teachers
     })
+
+@require_POST
+@login_required
+def create_todos(request):
+    task_name = request.POST.get('task_name')
+    user = User.objects.filter(username=request.user)[0]
+    new_todos = todos(task_name=task_name, user=user)
+    new_todos.save()
+    return redirect('lead-home')
 
 
 @login_required

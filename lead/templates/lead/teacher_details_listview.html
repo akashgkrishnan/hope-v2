@@ -13,10 +13,16 @@
         </div>
 </section>
 
-<section class="">
-    <table class="table table-responsive table-striped">
+<section>
+    <h3 class="display-4 text-secondary my-4 text-center">
+        all teachers
+    </h3>
+</section>
+
+<section class="teacherList table-responsive">
+    <table class="table table-striped">
         <caption>Student info</caption>
-        <thead class="text-center bg-gradient-primary text-muted">
+        <thead class="text-center bg-gradient-primary text-white">
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">employee code</th>
@@ -36,7 +42,7 @@
                 <td class="py-3"> {{ teacher.email }}</td>
                 <td class="py-3">
                     <a href="" class="btn btn-sm btn-info mb-2">View</a>
-                    <a href="{% url 'update-teacher' teacher.id %}" class="btn btn-sm btn-warning mb-2">Update info </a>
+                    <a href="{% url 'update-teacher' teacher.id %}" class="btn btn-sm btn-warning mb-2">edit</a>
                 </td>
             </tr>
             {% endfor %}

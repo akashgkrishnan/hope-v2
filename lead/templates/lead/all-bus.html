@@ -13,10 +13,16 @@
         </div>
 </section>
 
-<section class="studentlist row">
-    <table class="table table-responsive table-hover col-md-12">
-        <caption>Student info</caption>
-        <thead class="text-center bg-primary text-dark">
+<section>
+    <h3 class="display-4 text-secondary my-4 text-center">
+        all transport information
+    </h3>
+</section>
+
+<section class="studentlist row table-responsive">
+    <table class="table col-md-10 offset-md-1">
+        <caption>Bus information</caption>
+        <thead class="text-center bg-gradient-primary text-white">
             <tr>
                 <th scope="col">Route Name</th>
                 <th scope="col">Owner name</th>
@@ -25,7 +31,7 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody class="text-center table-primary text-lowercase text-justify text-dark">
+        <tbody class="text-center text-lowercase text-justify text-secondary">
             {% for bus in transports%}
             <tr>
                 <td class="py-3">{{ bus.bus_Route_start_to_end }}</td>

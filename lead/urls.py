@@ -14,6 +14,7 @@ urlpatterns = [
     path('add-teacher', views.add_teacher, name='add-teacher'),
     path('add-subject-teacher', views.subject_teachers, name='add-subject-teacher'),
     path('add-class-teacher', views.add_classteacher, name='add-class-teacher'),
+    path('add-tasks', views.create_todos, name='add-tasks'),
     path('departments', views.departments, name='departments'),
     path('all-student', views.StudentListView.as_view(), name='all-student'),
     path('all-teacher', views.TeacherListView.as_view(), name='all-teacher'),

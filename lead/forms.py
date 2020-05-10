@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.views.generic.dates import DateMixin
-from .models import lead_user, bus_master, event, subject_grade_section
+from .models import lead_user, bus_master, event, subject_grade_section, todos
 from student.models import (student_details,
                             student_address,
                             student_bus_info)
@@ -85,3 +85,8 @@ class subjectSectionForm(ModelForm):
     class Meta:
         model = subject_grade_section
         fields = ['grade_section']
+
+class todoForm(ModelForm):
+    class Meta:
+        model = todos
+        fields = ['task_name']

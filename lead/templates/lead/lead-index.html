@@ -12,35 +12,35 @@
 
 <section id='usercounts justify-content-around'>
     <div class="row">
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+        <a class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow" href="{% url 'all-student' %}">
             <h3>
                 students
             </h3>
             <p class="lead">
                 {{student_count}}
             </p>
-        </div>
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+        </a>
+        <a class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow" href="{% url 'all-teacher' %}">
             <h3>
                 teachers
             </h3>
-            <p class="lead">
+            <p class=" lead ">
                 {{teacher_count}}
             </p>
-        </div>
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+        </a>
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow ">
             <h3>
                 admins
             </h3>
-            <p class="lead">
+            <p class="lead ">
                 {{ lead_count }}
             </p>
         </div>
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow">
+        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow ">
             <h3>
                 management
             </h3>
-            <p class="lead">
+            <p class="lead ">
                 {{ management_count }}
             </p>
         </div>
@@ -48,30 +48,30 @@
 </section>
 
 
-<section class="row">
+<section class="row ">
 
 
-    <div class="col-md-4 my-5 shadow" id='task_lists'>
-        <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+    <div class="col-md-4 my-5 shadow " id='task_lists'>
+        <h3 class="display-5 text-secondary ml-5 mt-3 text-center ">
             pending
         </h3>
 
         <div class="table-responsive ">
-            <table class="table">
-                <thead class="text-white  bg-gradient-primary text-center">
+            <table class="table ">
+                <thead class="text-white bg-gradient-primary text-center ">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">task name </th>
-                        <th scope="col">action</th>
+                        <th scope="col ">#</th>
+                        <th scope="col ">task name </th>
+                        <th scope="col ">action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for task in todos %} {% if not task.task_status %}
-                    <tr class="text-center text-secondary">
-                        <th scope="row">{{ task.id }}</th>
+                    <tr class="text-center text-secondary ">
+                        <th scope="row ">{{ task.id }}</th>
                         <td>{{ task.task_name }}</td>
                         <td>
-                            <a href="{% url 'complete' task.id %}" class="btn btn-sm btn-success mb-2">mark as done</a>
+                            <a href="{% url 'complete' task.id %} " class="btn btn-sm btn-success mb-2 ">mark as done</a>
                         </td>
                     </tr>
                     {% endif %} {% endfor %}
@@ -81,44 +81,44 @@
     </div>
 
 
-    <div class="col-md-4 my-5 shadow bg-gradient-primary" id='task_creation_forms'>
-        <form method="POST" action="{% url 'add-tasks' %}">
+    <div class="col-md-4 my-5 shadow bg-gradient-primary " id='task_creation_forms'>
+        <form method="POST " action="{% url 'add-tasks' %} ">
             {% csrf_token %}
-            <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+            <h3 class="display-5 text-secondary ml-5 mt-3 text-center ">
                 create tasks
             </h3>
-            <!-- <div class="col-md-6"> -->
-            <fieldset class="form-group row ml-5">
+            <!-- <div class="col-md-6 "> -->
+            <fieldset class="form-group row ml-5 ">
                 {{ todoForm|crispy }}
             </fieldset>
-            <button class="btn text-white btn-success form-group row ml-5" type="submit">
+            <button class="btn text-white btn-success form-group row ml-5 " type="submit ">
                 Save
-                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-arrow-right "></i>
             </button>
         </form>
     </div>
 
-    <div class="col-md-4 my-5 shadow" id='task_lists'>
-        <h3 class="display-5 text-secondary ml-5 mt-3 text-center">
+    <div class="col-md-4 my-5 shadow " id='task_lists'>
+        <h3 class="display-5 text-secondary ml-5 mt-3 text-center ">
             completed
         </h3>
 
         <div class="table-responsive ">
-            <table class="table">
-                <thead class="text-white  bg-gradient-primary text-center">
+            <table class="table ">
+                <thead class="text-white bg-gradient-primary text-center ">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">task name </th>
-                        <th scope="col">action</th>
+                        <th scope="col ">#</th>
+                        <th scope="col ">task name </th>
+                        <th scope="col ">action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for task in todos %} {% if task.task_status %}
-                    <tr class="text-center text-secondary">
-                        <th scope="row">{{ task.id }}</th>
+                    <tr class="text-center text-secondary ">
+                        <th scope="row ">{{ task.id }}</th>
                         <td>{{ task.task_name }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-danger mb-2">delete</a>
+                            <a href="# " class="btn btn-sm btn-danger mb-2 ">delete</a>
                         </td>
                     </tr>
                     {% endif %} {% endfor %}

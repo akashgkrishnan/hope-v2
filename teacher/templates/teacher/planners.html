@@ -1,0 +1,22 @@
+{% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+
+
+<div class="container mb-md-4">
+    <div class="row mt-md-4">
+        <form method="POST" class="col-md-6 offset-md-3">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <h2 class="mb-md-4 offset-md-4">create planner</h2>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group mt-4">
+                <button class="btn btn-success btn-block text-white" style="background-color:rgb(86, 61, 124);" type="submit">submit for approval</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -18,5 +18,6 @@ class PlannersCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         teacher = teacher_details.objects.filter(user_name=self.request.user)[0]
+
         form.instance.author = teacher
         return super().form_valid(form)

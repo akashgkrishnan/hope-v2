@@ -1,6 +1,54 @@
-{% extends "teacher/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
 
+
+<section class="options d-flex justify-content-around">
+    <a href="{% url 'planners' %}" class="btn  btn-success rounded bg-gradient-primary text-white my-options">
+        Create Planners
+    </a>
+    <a href="{% url 'planners' %}" class="btn btn-warning rounded bg-gradient-primary text-white my-options">
+        Mark Attendance
+    </a>
+    <a href="{% url 'my-planners' %}" class="btn btn-danger rounded bg-gradient-primary text-white my-options">
+        My Planners
+    </a>
+    <a href="{% url 'planners' %}" class="btn  btn-info rounded bg-gradient-primary text-white my-options">
+        Create Planner
+    </a>
+
+
+
+</section>
+
+
+<section class="my-subjects table-responsive">
+    <table class="table">
+        <thead class="text-center bg-gradient-primary text-white">
+            <tr>
+                <th>Subject name</th>
+                <th>Grade name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center text-lowercase text-justify text-white">
+            {% for subject in my_subjects %}
+            <tr>
+                <td> {{ subject.subject }}</td>
+                <td> {{ subject.grade_section }} </td>
+                <td>
+                    <a href="{% url 'planners' %}" class=" btn btn-danger rounded bg-gradient-primary text-white my-options">
+                        Create Tests
+                    </a>
+                    <a href="{% url 'planners' %}" class="btn btn-warning bg-gradient-primary rounded text-white my-options">
+                        View Students
+                    </a>
+
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</section>
 
 {% endblock content %}

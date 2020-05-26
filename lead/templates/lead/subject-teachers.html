@@ -52,9 +52,9 @@
             {% for teacher in subject_teachers%}
             <tr>
                 <th class="py-3 " scope="row">{{teacher.id}} </th>
-                <td class="py-3 text-uppercase">{{ teacher.grade_section.section }}</td>
                 <td class="py-3 text-uppercase">{{ teacher.subject }}</td>
                 <td class="py-3 text-uppercase">{{ teacher.grade_section.grade }}</td>
+                <td class="py-3 text-uppercase">{{ teacher.grade_section.section }} </td>
                 <td class="py-3 text-uppercase">{{ teacher.teacher}} </td>
                 <td class="py-3">
                     <a href="" class="btn btn-sm btn-info mb-2">View</a>

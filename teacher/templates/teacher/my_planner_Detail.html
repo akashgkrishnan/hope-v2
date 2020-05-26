@@ -1,0 +1,13 @@
+{% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<section class="planner-details">
+    <h2>{{ planner.title }}</h2>
+    <h5>{{ planner.date_posted|date:"F d, Y" }} {{ planner.author }}</h5>
+    <p>
+        {{ planner.content }}
+    </p>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<section class="my-planners table-responsive">
+    <table class="table">
+        <thead class="text-center bg-gradient-primary text-white">
+            <tr>
+                <th>name</th>
+                <th>overview</th>
+                <th>date created</th>
+                <th>status</th>
+                <th>Approver</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center text-lowercase text-justify text-white">
+            {% for planner in my_planners %}
+            <tr>
+                <td> {{ planner.title }}</td>
+                <td> {{ planner.content| truncatewords:5 }} </td>
+                <td> {{ planner.date_posted|date:"F d, Y" }} </td>
+                <td> {{ planner.status }}</td>
+                <td> {{ planner.approver}} </td>
+                <td>
+                    <a href="{% url 'my-planner-details' planner.id %}" class=" btn btn-danger rounded bg-gradient-primary text-white my-options">
+                        View
+                    </a>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</section>
+
+{% endblock content %}

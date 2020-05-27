@@ -1,0 +1,42 @@
+{% extends "teacher/base.html" %} {% block content %}
+
+
+<section class="student_Detail text-white ">
+    <div class="container basic">
+        <div class="container row">
+            <h3 class="col-md-4"> Name </h3>
+            <h3 class="col-md-6"> {{ student.first_name }} {{ student.last_name}}</h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Email </h3>
+            <h3 class="col-md-6"> <a href="mailto:{{ student.email }}" class="text-white">{{ student.email }}</a></h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Fathers Name </h3>
+            <h3 class="col-md-6"> {{ student.fathers_name }}</h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Mothers Name </h3>
+            <h3 class="col-md-6"> {{ student.mothers_name }}</h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Date of Birth </h3>
+            <h3 class="col-md-6"> {{ student.dob }}</h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Phone </h3>
+            <h3 class="col-md-6"> {{ student.mobile }}</h3>
+        </div>
+        <div class="container row">
+            <h3 class="col-md-4"> Bus Info </h3>
+            <h3 class="col-md-6"> {{ student.student_bus_info.bus }} from {{ student.student_bus_info.start_point }}</h3>
+        </div>
+
+    </div>
+
+
+
+</section>
+
+
+{% endblock content %}

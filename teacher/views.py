@@ -3,16 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView
 
-from .models import planners, teacher_details, teacher_subject_grade_section
+from .models import planners, teacher_details, teacher_subject_grade_section, grade_class_teacher
 from student.models import student_details
 # Create your views here.
 
 
 def teacher_home(request):
     teacher = teacher_details.objects.filter(user_name=request.user)[0]
+    if grade_class_teacher.objects.filter(teacher=teacher).exists():
+        is_classTeacher = True
+    else:
+        is_classTeacher = False
+
     teacher_subjects = teacher_subject_grade_section.objects.filter(
         teacher=teacher)
-    context = {"my_subjects": teacher_subjects}
+    context = {
+        "my_subjects": teacher_subjects,
+        'is_classTeacher': is_classTeacher
+    }
     return render(request, 'teacher/teacher-index.html', context)
 
 
@@ -51,3 +59,11 @@ def student_gradelist(request, pk):
     students = student_details.objects.filter(grade_section=pk)
     context = {'students': students}
     return render(request, 'teacher/studentGrade_listView.html', context)
+
+@login_required
+def student_DetailView(request, pk):
+    student = student_details.objects.get(id = pk)
+    context = {
+        'student': student
+    }
+    return render(request, 'teacher/student_detailView.html', context)

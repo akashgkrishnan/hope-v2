@@ -41,7 +41,7 @@
                 <td class="py-3"> {{ student.mothers_name }}</td>
                 <td class="py-3 text-uppercase">{{student.grade_section}}</td>
                 <td class="py-3">
-                    <a href="#" class="btn btn-sm btn-info mb-2">View</a>
+                    <a href="{% url 'student-detail' student.id %}" class="btn btn-sm btn-info mb-2">View</a>
                 </td>
             </tr>
             {% endfor %}

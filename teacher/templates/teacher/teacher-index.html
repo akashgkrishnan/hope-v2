@@ -24,35 +24,39 @@
 </section>
 
 
-<section class="my-subjects table-responsive">
-    <table class="table table-responsive" ">
-        <thead class="text-center bg-gradient-primary text-white ">
-            <tr>
-                <th>Subject name</th>
-                <th>Grade name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody class="text-center text-lowercase text-justify text-white ">
-            {% for subject in my_subjects %}
-            <tr>
-                <td class="text-uppercase "> {{ subject.subject }}</td>
-                <td class="text-uppercase "> {{ subject.grade_section }} </td>
-                <td>
-                    <a href="{% url 'planners' %} " class=" btn btn-danger rounded bg-gradient-primary text-white my-options ">
+<section class="my-subjects">
+    <div class="table-responsive">
+
+
+        <table class="table">
+            <thead class="text-center bg-gradient-primary text-white ">
+                <tr>
+                    <th>Subject name</th>
+                    <th>Grade name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-center text-lowercase text-justify text-white ">
+                {% for subject in my_subjects %}
+                <tr>
+                    <td class="text-uppercase "> {{ subject.subject }}</td>
+                    <td class="text-uppercase "> {{ subject.grade_section }} </td>
+                    <td>
+                        <a href="{% url 'planners' %} " class=" btn btn-danger rounded bg-gradient-primary text-white my-options mb-2 ">
                         Create Tests
                     </a>
-                    <a href="{% url 'grade-students' subject.grade_section.id %} " class="btn btn-warning bg-gradient-primary rounded text-white my-options ">
+                        <a href="{% url 'grade-students' subject.grade_section.id %} " class="btn btn-warning bg-gradient-primary rounded text-white my-options mb-2">
                         View Students
                     </a>
 
 
-                </td>
-            </tr>
-            {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 {% endblock content %}

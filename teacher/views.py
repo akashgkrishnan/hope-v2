@@ -59,3 +59,11 @@ def student_gradelist(request, pk):
     students = student_details.objects.filter(grade_section=pk)
     context = {'students': students}
     return render(request, 'teacher/studentGrade_listView.html', context)
+
+@login_required
+def student_DetailView(request, pk):
+    student = student_details.objects.get(id = pk)
+    context = {
+        'student': student
+    }
+    return render(request, 'teacher/student_detailView.html', context)

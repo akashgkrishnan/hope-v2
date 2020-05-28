@@ -5,10 +5,10 @@
     <a href="{% url 'planners' %}" class="btn  btn-success rounded bg-gradient-primary text-white my-options">
         Create Planners
     </a> {% if is_classTeacher %}
-    <a href="{% url 'planners' %}" class="btn btn-warning rounded bg-gradient-primary text-white my-options">
+    <a href="{% url 'attendance' %}" class="btn btn-warning rounded bg-gradient-primary text-white my-options">
         Mark Attendance
     </a>
-    <a href="{% url 'planners' %}" class="btn btn-secondary rounded bg-gradient-primary text-white my-options">
+    <a href="{% url 'grade-students' teacher.grade_class_teacher.grade_section.id %}" class="btn btn-secondary rounded bg-gradient-primary text-white my-options">
         My Class
     </a> {% endif %}
 

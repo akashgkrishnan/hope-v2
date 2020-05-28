@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from datetime import date
+
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.views.generic import CreateView, ListView
 
 from .models import planners, teacher_details, teacher_subject_grade_section, grade_class_teacher
-from student.models import student_details
+from student.models import student_details, attendance_history, student_attendance
 # Create your views here.
 
 
@@ -19,7 +22,8 @@ def teacher_home(request):
         teacher=teacher)
     context = {
         "my_subjects": teacher_subjects,
-        'is_classTeacher': is_classTeacher
+        'is_classTeacher': is_classTeacher,
+        'teacher': teacher
     }
     return render(request, 'teacher/teacher-index.html', context)
 
@@ -67,3 +71,26 @@ def student_DetailView(request, pk):
         'student': student
     }
     return render(request, 'teacher/student_detailView.html', context)
+
+
+@login_required
+def attendance(request):
+    user = teacher_details.objects.get(user_name = request.user)
+    grade_ct = grade_class_teacher.objects.get(teacher = user)
+    students = student_details.objects.filter(grade_section=grade_ct.grade_section)
+    today = date.today()
+    if request.method == 'POST':
+        if attendance_history.objects.filter(attendance_of=grade_ct).filter(attended_on=today).exists():
+            messages.warning(request, f'you have already marked todays attendance')
+            return redirect('teacher-home')    
+        else:
+            for student in students:
+                val = 'student'+str(student.id)
+                attend = request.POST.get(val)
+                new = student_attendance(student=student, attended=attend, date=today)
+                new.save()
+            new_history = attendance_history(attendance_of = grade_ct, attended_on = today)
+            new_history.save()
+        return redirect('teacher-home')
+
+    return render(request, 'teacher/attendance.html', {'students': students, 'date': today})

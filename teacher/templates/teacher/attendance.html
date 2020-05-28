@@ -1,0 +1,66 @@
+{% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="jumbotron mt-4">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="row">
+            <div class="col">
+                {% if messages %} {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %} {% endif %}
+            </div>
+        </div>
+        <div class="container row">
+            <div class="col">
+                <form method="POST" action="{% url 'attendance'%}" class="table-responsive">
+                    {% csrf_token %}
+
+                    <table class="table table-hover mt-4">
+                        <caption>Marking attendance for {{ date }} </caption>
+                        <thead class="bg-gradient-success text-white">
+                            <tr class="text-center">
+                                <th>name</th>
+                                <th>date</th>
+                                <th>status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr class="text-center">
+                                <th>{{ student.first_name }}</th>
+                                <td>{{ date|date:"F d, Y" }}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" id="{{student.id}}" name="student{{student.id}}" }>
+                                              <option value="PRESENT">PRESENT</option>
+                                              <option value="ABSENT">ABSENT</option>
+                                              <option value="APPLIED LEAVE">APPLIED LEAVE</option>
+                                              <option value="HOLIDAY">HOLIDAY</option>
+                                              <option value="OTHER">OTHER</option>
+                                            </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <button class="btn btn-lg btn-success text-white col-md-6 offset-md-6" type="submit">
+                    Save
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

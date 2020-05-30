@@ -2,10 +2,9 @@ bootstrap/
 sass/
 js/
 *.pyc
-*.jpg
-*.png
+
 *.map
 media/
-*.png
+
 migrations/
-images/
+

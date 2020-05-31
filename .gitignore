@@ -1,6 +1,5 @@
 bootstrap/
 sass/
-js/
 *.pyc
 
 *.map

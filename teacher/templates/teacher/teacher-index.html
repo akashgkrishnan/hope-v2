@@ -1,23 +1,21 @@
 {% extends "teacher/base.html" %} {% load crispy_forms_tags %} {% block content %}
 
 
-<section class="options d-flex justify-content-around">
-    <a href="{% url 'planners' %}" class="btn  btn-success rounded bg-gradient-primary text-white my-options">
+<section class="options d-flex row justify-content-around">
+    <a href="{% url 'planners' %}" class="mb-2 btn  btn-success  btn-sm bg-gradient-primary text-white my-options col">
         Create Planners
     </a> {% if is_classTeacher %}
-    <a href="{% url 'attendance' %}" class="btn btn-warning rounded bg-gradient-primary text-white my-options">
+    <a href="{% url 'attendance' %}" class="mb-2 btn btn-warning btn-sm bg-gradient-primary text-white my-options col">
         Mark Attendance
     </a>
-    <a href="{% url 'grade-students' teacher.grade_class_teacher.grade_section.id %}" class="btn btn-secondary rounded bg-gradient-primary text-white my-options">
+    <a href="{% url 'grade-students' teacher.grade_class_teacher.grade_section.id %}" class="mb-2 btn btn-secondary btn-sm bg-gradient-primary text-white my-options col">
         My Class
     </a> {% endif %}
 
-    <a href="{% url 'my-planners' %}" class="btn btn-danger rounded bg-gradient-primary text-white my-options">
+    <a href="{% url 'my-planners' %}" class="mb-2 btn btn-danger btn-sm bg-gradient-primary text-white my-options col">
         My Planners
     </a>
-    <a href="{% url 'planners' %}" class="btn  btn-info rounded bg-gradient-primary text-white my-options">
-        Create Planner
-    </a>
+
 
 
 

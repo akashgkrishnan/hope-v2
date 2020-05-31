@@ -15,6 +15,7 @@ urlpatterns = [
     path('add-subject-teacher', views.subject_teachers, name='add-subject-teacher'),
     path('add-class-teacher', views.add_classteacher, name='add-class-teacher'),
     path('add-tasks', views.create_todos, name='add-tasks'),
+    path('delete-task/<str:pk>', views.delete_task, name='delete-task'),
     path('complete/<str:pk>', views.complete, name='complete'),
     path('departments', views.departments, name='departments'),
     path('all-student', views.StudentListView.as_view(), name='all-student'),

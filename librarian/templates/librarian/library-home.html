@@ -75,7 +75,7 @@
                     Books
                 </h3>
                 <p class="lead">
-                    {{summ_all_books}}
+                    {{sum_all_books}}
                 </p>
             </div>
             <div class="btn py-3 text-secondary bg-gradient-primary col-md-3 mx-5 mb-3 shadow">
@@ -95,6 +95,25 @@
                 </p>
             </div>
         </div>
+    </section>
+
+
+    <section class="grade_sections">
+        <h3 class="display-3 grades_se">
+            Grades
+        </h3>
+        <div class="container">
+            <div class="row">
+                {% for grade in grades %}
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-outline-danger bg-gradient-primary grades mb-4">
+                        {{grade.grade}} {{grade.section}}
+                    </a>
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+
     </section>
 
 

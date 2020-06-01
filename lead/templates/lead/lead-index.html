@@ -82,7 +82,7 @@
 
 
     <div class="col-md-4 my-5 shadow bg-gradient-primary " id='task_creation_forms'>
-        <form method="post " action="{% url 'add-tasks' %} ">
+        <form method="post" action="{% url 'add-tasks' %} ">
             {% csrf_token %}
             <h3 class="display-5 text-secondary ml-5 mt-3 text-center ">
                 create tasks
@@ -118,7 +118,7 @@
                         <th scope="row ">{{ task.id }}</th>
                         <td>{{ task.task_name }}</td>
                         <td>
-                            <a href="# " class="btn btn-sm btn-danger mb-2 ">delete</a>
+                            <a href="{% url 'delete-task' task.id %} " class="btn btn-sm btn-danger mb-2 ">delete</a>
                         </td>
                     </tr>
                     {% endif %} {% endfor %}

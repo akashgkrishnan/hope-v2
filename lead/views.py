@@ -296,6 +296,13 @@ def complete(request, pk):
 	todo.save()
 	return redirect('lead-home')
 
+@login_required
+def delete_task(request, pk):
+    todo = todos.objects.filter(pk = pk)
+    todo.delete()
+    return redirect('lead-home')
+
+
 
 @login_required
 def departments(request):  # for mapping deparment heads to department

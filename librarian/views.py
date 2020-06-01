@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 # models
 from .models import book_inventory
+from lead.models import grade_section_master
 # forms
 from .forms import BookForm
 
@@ -12,12 +13,13 @@ from .forms import BookForm
 @login_required
 def library_index(request):
     book = book_inventory.objects.all()
-    print(book)
+    grades = grade_section_master.objects.all()
     sum_all_books = sum((item.number_of_books for item in book))
     form = BookForm()
     return render(request, 'librarian/library-home.html', {
         'sum_all_books': sum_all_books,
         'books': book,
+        'grades': grades,
         'form': form
     })
 

@@ -26,9 +26,9 @@ class book_inventory(models.Model):
 
 class books_out(models.Model):
     book = models.ForeignKey(book_inventory, on_delete= models.CASCADE)
-    out_date = models.DateTimeField(default=timezone.now)
-    in_date = models.DateTimeField(blank=True)
     student = models.ForeignKey(student_details, on_delete=models.CASCADE)
+    issued_date = models.DateTimeField(default=timezone.now)
+    returned_date = models.DateTimeField(blank=True)
     is_returned = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):

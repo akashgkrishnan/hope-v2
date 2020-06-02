@@ -364,6 +364,18 @@ class allbusListView(LoginRequiredMixin, ListView):
     template_name = 'lead/all-bus.html'
     context_object_name = 'transports'
 
+class ManagementListView(LoginRequiredMixin, ListView):
+    model = management_user
+    template_name = 'lead/user_listview.html'
+    context_object_name = 'users'
+    ordering = ['-id']
+
+class LeadListView(LoginRequiredMixin, ListView):
+    model = management_user
+    template_name = 'lead/user_listview.html'
+    context_object_name = 'users'
+    ordering = ['-id']
+
 
 class gradeTeacherUpdateView(LoginRequiredMixin, UpdateView):
     model = grade_class_teacher

@@ -28,22 +28,22 @@
                 {{teacher_count}}
             </p>
         </a>
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow ">
+        <a class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow " href="{% url 'all-admin' %}">
             <h3>
                 admins
             </h3>
             <p class="lead ">
                 {{ lead_count }}
             </p>
-        </div>
-        <div class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow ">
+        </a>
+        <a class="btn py-3 text-secondary bg-gradient-primary col-md-2 mx-5 mb-3 shadow " href="{% url 'all-managers' %}">
             <h3>
                 management
             </h3>
             <p class="lead ">
                 {{ management_count }}
             </p>
-        </div>
+        </a>
     </div>
 </section>
 

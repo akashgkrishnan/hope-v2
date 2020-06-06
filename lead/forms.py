@@ -1,3 +1,4 @@
+import datetime
 from django.forms import ModelForm
 from django import forms
 from django.views.generic.dates import DateMixin
@@ -8,9 +9,10 @@ from student.models import (student_details,
 
 from teacher.models import grade_class_teacher
 
-class DateInput(forms.DateInput, DateMixin):
+class DateInput(forms.DateInput):
     input_type = 'date'
-    allow_future = False
+
+
 
 
 class leadForm(ModelForm):
@@ -57,6 +59,14 @@ class studentForm(ModelForm):
         widgets = {
             'dob': DateInput()
         }
+
+    def clean_dob(self):
+        date = self.cleaned_data['dob']
+        if date > datetime.date.today():
+            raise forms.ValidationError("The date cannot be in the future!")
+        return date
+    
+
 
 
 class studentAddressForm(ModelForm):

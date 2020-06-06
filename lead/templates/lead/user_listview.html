@@ -1,0 +1,36 @@
+{% extends "lead/home.html" %} {% block content %}
+
+<section class="text-secondary text-center">
+    <h3 class="display-3">
+        {{ title }}
+    </h3>
+</section>
+
+<section class="lead_users">
+    <div class="table-responsive">
+        <table class="table table-striped text-white">
+            <thead class="bg-gradient-primary text-center">
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Actions</th>
+            </thead>
+            <tbody class="text-center">
+                <tr>
+                    {% for user in users%}
+                    <td> {{ user.id}}</td>
+                    <td> {{ user.first_name }} {{ user.last_name }} </td>
+                    <td> {{ user.email }} </td>
+                    <td> {{ user.mobile }} </td>
+                    <td> <a href="" class="btn btn-outline-danger bg-gradient-primary mb-3"> Delete </a>
+                        <a href="" class="btn btn-outline-info bg-gradient-primary mb-3"> View </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock content %}

@@ -296,6 +296,13 @@ def complete(request, pk):
 	todo.save()
 	return redirect('lead-home')
 
+@login_required
+def delete_task(request, pk):
+    todo = todos.objects.filter(pk = pk)
+    todo.delete()
+    return redirect('lead-home')
+
+
 
 @login_required
 def departments(request):  # for mapping deparment heads to department
@@ -357,6 +364,29 @@ class allbusListView(LoginRequiredMixin, ListView):
     template_name = 'lead/all-bus.html'
     context_object_name = 'transports'
 
+class ManagementListView(LoginRequiredMixin, ListView):
+    model = management_user
+    template_name = 'lead/user_listview.html'
+    context_object_name = 'users'
+    ordering = ['-id']
+
+    def get_context_data(self, **kwargs):          
+        context = super().get_context_data(**kwargs)                     
+        new_context_entry = "here it goes"
+        context["title"] = 'Management'
+        return context
+
+class LeadListView(LoginRequiredMixin, ListView):
+    model = management_user
+    template_name = 'lead/user_listview.html'
+    context_object_name = 'users'
+    ordering = ['-id']
+
+    def get_context_data(self, **kwargs):          
+        context = super().get_context_data(**kwargs)                     
+        new_context_entry = "here it goes"
+        context["title"] = 'Admins'
+        return context
 
 class gradeTeacherUpdateView(LoginRequiredMixin, UpdateView):
     model = grade_class_teacher
